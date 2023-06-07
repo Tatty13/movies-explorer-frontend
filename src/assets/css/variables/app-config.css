@@ -1,0 +1,14 @@
+:root {
+  --app-width-desktop: 1280px;
+  --app-width-tab: 768px;
+  --app-width-mobile: 320px;
+
+  --app-side-padding-desktop: 70px;
+  --app-side-padding-tab-s: 30px;
+  --app-side-padding-tab-m: 50px;
+  --app-side-padding-mobile-xs: 10px;
+  --app-side-padding-mobile-s: 14px;
+  --app-side-padding-mobile-m: 18px;
+
+  --transition-duration-main: 0.3s;
+}

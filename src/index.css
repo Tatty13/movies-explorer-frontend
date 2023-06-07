@@ -1,2 +1,8 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/inter/fonts.css');
+
+@import url('./assets/css/variables/app-config.css');
+@import url('./assets/css/variables/theme-config.css');
+@import url('./assets/css/variables/text-config.css');
+
+@import url('./assets/css/global.css');

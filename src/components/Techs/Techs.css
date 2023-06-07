@@ -1,0 +1,117 @@
+.techs {
+  background-color: var(--color-bg-tertiary);
+}
+
+.container_place_techs {
+  padding: 100px var(--app-side-padding-desktop);
+}
+
+.techs__title {
+  margin-bottom: 90px;
+}
+
+.techs__subtitle {
+  margin: 0 0 26px;
+  font-size: var(--text-xxl);
+  font-weight: var(--text-weight-s);
+  line-height: var(--text-line-s);
+  text-align: center;
+  letter-spacing: -0.04em;
+  transition: var(--transition-duration-main);
+}
+
+.techs__desc {
+  max-width: 460px;
+  margin: 0 auto 100px;
+  font-size: var(--text-s);
+  line-height: var(--text-line-xl);
+  letter-spacing: -0.04em;
+  text-align: center;
+  transition: var(--transition-duration-main);
+}
+
+.techs__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 90px);
+  justify-content: center;
+  gap: 10px;
+  transition: var(--transition-duration-main);
+}
+
+.techs__item {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-s);
+  line-height: var(--text-line-m);
+  letter-spacing: -0.04em;
+  background-color: var(--color-bg-blocks);
+  border-radius: 10px;
+  transition: var(--transition-duration-main);
+}
+
+.techs__item:hover {
+  transform: scale(1.08);
+}
+
+@media screen and (max-width: 920px) {
+  .container_place_techs {
+    padding: 90px var(--app-side-padding-tab-m);
+  }
+
+  .techs__title {
+    margin-bottom: 80px;
+  }
+
+  .techs__subtitle {
+    margin-bottom: 22px;
+  }
+
+  .techs__desc {
+    margin-bottom: 83px;
+    font-size: var(--text-xxs);
+    line-height: 1.5;
+  }
+
+  .techs__list {
+    grid-template-columns: repeat(auto-fit, 84px);
+  }
+
+  .techs__item {
+    min-height: 57px;
+    font-size: var(--text-xxs);
+    line-height: 1.25;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .techs {
+    background-color: var(--color-bg-primary);
+  }
+
+  .container_place_techs {
+    padding: 70px var(--app-side-padding-mobile-m);
+  }
+
+  .techs__title {
+    margin-bottom: 60px;
+  }
+
+  .techs__subtitle {
+    margin-bottom: 24px;
+    font-size: 30px;
+    line-height: var(--text-line-m);
+  }
+
+  .techs__desc {
+    margin-bottom: 50px;
+    font-size: var(--text-xxxs);
+    line-height: 1.45;
+  }
+
+  .techs__list {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

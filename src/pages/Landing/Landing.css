@@ -1,0 +1,17 @@
+.landing-title {
+  margin-top: 0;
+  padding-bottom: 23px;
+  font-size: 22px;
+  font-weight: var(--text-weight-s);
+  line-height: var(--text-line-m);
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid var(--color-border-title);
+  transition: var(--transition-duration-main);
+}
+
+@media screen and (max-width: 568px) {
+  .landing-title {
+    padding-bottom: 28px;
+    font-size: var(--text-l);
+  }
+}

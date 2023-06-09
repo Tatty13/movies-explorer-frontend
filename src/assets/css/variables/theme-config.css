@@ -8,6 +8,7 @@
   --color-bg-secondary: var(--color-very-dark-gray-2); /* 222 */
   --color-bg-tertiary: var(--color-very-dark-gray-1); /* 272727 */
   --color-bg-hero: var(--color-dark-blue);
+  --color-bg-overlay: var(--color-black-rgba-30);
 
   --color-bg-profile_btn: var(--color-dark-gray1); /* 313131 */
   --color-bg-more_btn: var(--color-dark-gray3); /* 2f2f2f */

@@ -8,4 +8,6 @@ const ROUTES_WITH_HEADER = [
   '/signup',
 ];
 
-export { ROUTES_WITH_FOOTER, ROUTES_WITH_HEADER };
+const ROUTES_WITH_NAVBAR = ['/', '/movies', '/saved-movies', '/profile'];
+
+export { ROUTES_WITH_FOOTER, ROUTES_WITH_HEADER, ROUTES_WITH_NAVBAR };

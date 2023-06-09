@@ -1,3 +1,7 @@
+export * from './Header/Header';
+export * from './Logo/Logo';
+export * from './NavBar/NavBar';
+export * from './BurgerBtn/BurgerBtn';
 export * from './Footer/Footer';
 export * from './Promo/Promo';
 export * from './AboutProject/AboutProject';

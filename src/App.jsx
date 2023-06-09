@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className='content'>
         <Routes>
           <Route
             path='/'

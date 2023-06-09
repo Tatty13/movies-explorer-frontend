@@ -19,6 +19,10 @@
   flex-direction: column;
 }
 
+.content {
+  flex-grow: 1;
+}
+
 .container {
   margin: 0 auto;
   max-width: var(--app-width-desktop);

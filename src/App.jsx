@@ -1,15 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 
-import {
-  Landing,
-  Login,
-  Movies,
-  NotFound,
-  Profile,
-  Register,
-  SavedMovies,
-} from './pages';
+import { Landing, Login, Movies, NotFound, Profile, Register } from './pages';
 import { Footer, Header } from './components';
+import { movies, savedMovies } from './utils/movies-data';
 
 function App() {
   return (
@@ -31,11 +24,11 @@ function App() {
           />
           <Route
             path='/movies'
-            element={<Movies />}
+            element={<Movies movies={movies} savedMovies={savedMovies}/>}
           />
           <Route
             path='/saved-movies'
-            element={<SavedMovies />}
+            element={<Movies movies={savedMovies} />}
           />
           <Route
             path='/profile'

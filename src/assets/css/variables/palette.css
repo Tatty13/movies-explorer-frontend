@@ -18,8 +18,10 @@
   --color-very-dark-gray-3: #202020;
   --color-black: #000;
 
+  --color-white-rgba-20: rgba(255, 255, 255, 0.2);
   --color-white-rgba-50: rgba(255, 255, 255, 0.5);
   --color-white-rgba-60: rgba(255, 255, 255, 0.6);
-  --color-black-rgba-30: rgba(0, 0, 0, 0.30);
+  --color-white-rgba-70: rgba(255, 255, 255, 0.7);
+  --color-black-rgba-30: rgba(0, 0, 0, 0.3);
   --color-black-rgba-08: rgba(0, 0, 0, 0.08);
 }

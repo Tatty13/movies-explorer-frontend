@@ -3,8 +3,14 @@ import { Route, Routes } from 'react-router-dom';
 import { Landing, Login, Movies, NotFound, Profile, Register } from './pages';
 import { Footer, Header } from './components';
 import { movies, savedMovies } from './utils/movies-data';
+import { useState } from 'react';
 
 function App() {
+  const [currentUser] = useState({
+    name: 'Виталий',
+    email: 'pochta@yandex.ru',
+  });
+
   return (
     <>
       <Header />
@@ -24,7 +30,12 @@ function App() {
           />
           <Route
             path='/movies'
-            element={<Movies movies={movies} savedMovies={savedMovies}/>}
+            element={
+              <Movies
+                movies={movies}
+                savedMovies={savedMovies}
+              />
+            }
           />
           <Route
             path='/saved-movies'
@@ -32,7 +43,7 @@ function App() {
           />
           <Route
             path='/profile'
-            element={<Profile />}
+            element={<Profile user={currentUser} />}
           />
           <Route
             path='*'

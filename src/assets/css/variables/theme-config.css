@@ -21,12 +21,12 @@
   --color-text-important: var(--color-red);
   --color-text-primary-rgpa-50: var(--color-white-rgba-50);
 
-  --color-border-primary: var(--color-gray-2);
-  --color-border-title: var(--color-very-light-gray-1);
+  --color-border-primary: var(--color-gray-2); /*424242*/
+  --color-border-title: var(--color-very-light-gray-1); /*dadada*/
   --color-border-landing_link: var(--color-very-light-gray-2); /*e6e6e6*/
   --color-border-nav_link: var(--color-white);
   --color-border-btn: var(--color-white);
   --color-border-btn-rgba-60: var(--color-white-rgba-60);
   --color-border-success: var(--color-blue);
-  --color-border-delimiter: var(--color-gray-1);
+  --color-border-delimiter: var(--color-gray-1); /*505050*/
 }

@@ -1,7 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import './Nav.css';
+import { useEffect } from 'react';
 
-function Nav({ extraNavClasses, extraListClasses, navItems }) {
+function Nav({ extraNavClasses, extraListClasses, navItems, isOpen, onClose }) {
+  useEffect(() => {
+    function handleOverlayClose(evt) {
+      if (evt.target.classList.contains('main-nav_open')) onClose();
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleOverlayClose);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleOverlayClose);
+    };
+  }, [isOpen, onClose]);
+
   const handleActiveLink = ({ isActive }) =>
     `link nav__link ${isActive ? 'nav__link_active' : ''}`;
 

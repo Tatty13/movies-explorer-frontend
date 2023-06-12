@@ -11,6 +11,8 @@ function Header() {
   const { pathname } = useLocation();
   const [isNavBarOpen, setNavBarState] = useState(false);
 
+  const closeNavBar = () => setNavBarState(false);
+
   const toggleBurgerMenu = () => setNavBarState(!isNavBarOpen);
 
   const hasHeader = ROUTES_WITH_HEADER.includes(pathname);
@@ -33,6 +35,7 @@ function Header() {
             <NavBar
               isLoggedIn={isLoggedIn}
               isOpen={isNavBarOpen}
+              onClose={closeNavBar}
             />
           )}
           {hasNavBar && isLoggedIn && (

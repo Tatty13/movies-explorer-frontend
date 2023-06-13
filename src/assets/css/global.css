@@ -47,17 +47,6 @@
   cursor: pointer;
 }
 
-.link_theme_brand-secondary {
-  font-size: var(--text-s);
-  line-height: var(--text-line-m);
-  font-weight: var(--text-weight-s);
-  color: var(--color-brand-secondary);
-}
-
-.link_theme_brand-secondary:hover {
-  opacity: 0.6;
-}
-
 .link_theme_primary {
   color: var(--color-text-primary);
 }
@@ -81,12 +70,5 @@
   .section {
     padding-left: var(--app-side-padding-tab-s);
     padding-right: var(--app-side-padding-tab-s);
-  }
-}
-
-@media screen and (max-width: 468px) {
-  .link_theme_brand-secondary {
-    font-size: var(--text-xxs);
-    line-height: 1.25;
   }
 }

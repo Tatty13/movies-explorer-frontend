@@ -21,6 +21,10 @@
 
 .auth__link {
   margin-left: 4px;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: var(--text-weight-s);
+  color: var(--color-brand-secondary);
 }
 
 @media screen and (max-width: 768px) {

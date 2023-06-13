@@ -19,7 +19,7 @@ function AuthPage({ title, pageName, btnText, children }) {
           Уже зарегистрированы?{' '}
           <Link
             to='/signin'
-            className='link link_theme_brand-secondary auth__link hover-effect hover-effect_type_opacity-60'>
+            className='link auth__link hover-effect hover-effect_type_opacity-60'>
             Войти
           </Link>
         </p>
@@ -29,7 +29,7 @@ function AuthPage({ title, pageName, btnText, children }) {
           Ещё не зарегистрированы?{' '}
           <Link
             to='/signup'
-            className='link link_theme_brand-secondary auth__link hover-effect hover-effect_type_opacity-60'>
+            className='link auth__link hover-effect hover-effect_type_opacity-60'>
             Регистрация
           </Link>
         </p>

@@ -29,7 +29,7 @@ function Profile({ user }) {
         name='profile'
         onSubmit={handleSubmit}
         isEditMode={isEditMode}>
-        <label className='form__block form__block__mode_row'>
+        <label className='form__block form__block_mode_row'>
           Имя
           <input
             className={`form__input form__input_mode_row`}
@@ -44,7 +44,7 @@ function Profile({ user }) {
           />
           <span className='form__input-error form__input-error_mode_row'></span>
         </label>
-        <label className='form__block form__block__mode_row'>
+        <label className='form__block form__block_mode_row'>
           E-mail
           <input
             className={`form__input form__input_mode_row`}
@@ -78,44 +78,6 @@ function Profile({ user }) {
       )}
     </section>
   );
-
-  //   <SectionWithForm
-  //     title={`Привет, ${user.name}!`}
-  //     sectionName='profile'
-  //     onSignout={handleSignout}
-  //     onEditClick={handleInfoEdit}
-  //     isEditMode={isEditMode}
-  //     onSubmit={handleSubmit}>
-  //     <label className='form__block form__block__mode_row'>
-  //       Имя
-  //       <input
-  //         className={`form__input form__input_mode_row`}
-  //         type='text'
-  //         name='name'
-  //         placeholder='Введите имя'
-  //         defaultValue={user.name}
-  //         minLength='2'
-  //         maxLength='30'
-  //         required
-  //         disabled={!isEditMode}
-  //       />
-  //       <span className='form__input-error form__input-error_mode_row'></span>
-  //     </label>
-  //     <label className='form__block form__block__mode_row'>
-  //       E-mail
-  //       <input
-  //         className={`form__input form__input_mode_row`}
-  //         type='email'
-  //         name='email'
-  //         placeholder='Введите Email'
-  //         defaultValue={user.email}
-  //         required
-  //         disabled={!isEditMode}
-  //       />
-  //       <span className='form__input-error form__input-error_mode_row'></span>
-  //     </label>
-  //   </SectionWithForm>
-  // );
 }
 
 export { Profile };

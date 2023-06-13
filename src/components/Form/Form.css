@@ -38,7 +38,7 @@
   transition: var(--transition-duration-main);
 }
 
-.form__block__mode_row {
+.form__block_mode_row {
   display: grid;
   grid-template-columns: 141px 1fr;
   grid-template-rows: min-content;
@@ -47,7 +47,7 @@
   line-height: 1.18;
 }
 
-.form__block__mode_row:last-of-type {
+.form__block_mode_row:last-of-type {
   border-color: var(--color-bg-primary);
 }
 
@@ -110,7 +110,7 @@
 }
 
 @media screen and (max-width: 560px) {
-  .form__block__mode_row {
+  .form__block_mode_row {
     grid-template-columns: 130px 1fr;
   }
 

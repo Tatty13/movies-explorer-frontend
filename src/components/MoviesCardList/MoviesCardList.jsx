@@ -20,13 +20,14 @@ function MoviesCardList({ movies, savedMovies }) {
       savedMovies?.some((savedMovie) => savedMovie.movieId === movie.id);
 
     return (
-      <MoviesCard
-        key={movie[savedMovies ? 'id' : '_id']}
-        nameRU={nameRU}
-        duration={duration}
-        image={imageUrl}
-        isSaved={isSaved}
-      />
+      <li key={movie[savedMovies ? 'id' : '_id']}>
+        <MoviesCard
+          nameRU={nameRU}
+          duration={duration}
+          image={imageUrl}
+          isSaved={isSaved}
+        />
+      </li>
     );
   });
 

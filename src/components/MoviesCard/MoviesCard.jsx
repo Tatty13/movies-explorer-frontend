@@ -11,7 +11,7 @@ function MoviesCard({ nameRU, duration, image, isSaved }) {
   const { pathname } = useLocation();
 
   return (
-    <li className='movie-card'>
+    <article className='movie-card'>
       <h2 className='movie-card__title'>{nameRU}</h2>
       <span className='movie-card__duration'>
         {convertMinsToHhMm(duration)}
@@ -32,7 +32,7 @@ function MoviesCard({ nameRU, duration, image, isSaved }) {
             : 'movie-card__delete-btn'
         }`}
       />
-    </li>
+    </article>
   );
 }
 

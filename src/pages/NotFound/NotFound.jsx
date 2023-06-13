@@ -9,7 +9,7 @@ function NotFound() {
       <h1 className='not-found__title'>Страница не найдена</h1>
       <Link
         to={'/'}
-        className='link link_type_normal link_theme_brand-secondary'>
+        className='link link_theme_brand-secondary'>
         Назад
       </Link>
     </section>

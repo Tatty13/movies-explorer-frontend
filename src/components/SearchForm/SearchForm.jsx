@@ -20,7 +20,7 @@ function SearchForm() {
         <button
           type='submit'
           aria-label='Искать'
-          className='search-form__btn search__btn'>
+          className='search-form__btn search__btn hover-effect'>
           <span className='search__icon' />
         </button>
       </div>
@@ -29,9 +29,8 @@ function SearchForm() {
           type='button'
           aria-label='Фильтровать'
           onClick={toggleFilter}
-          className={`search-form__btn filter__btn ${
-            !isFilterActive && 'filter__btn_inactive'
-          }`}>
+          className={`search-form__btn filter__btn hover-effect hover-effect_type_opacity-60
+          ${!isFilterActive && 'filter__btn_inactive'}`}>
           <span className='filter__switch'></span>
         </button>
         <span className='filter__name'>Короткометражки</span>

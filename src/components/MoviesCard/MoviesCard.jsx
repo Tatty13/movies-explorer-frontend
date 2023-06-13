@@ -24,7 +24,7 @@ function MoviesCard({ nameRU, duration, image, isSaved }) {
 
       <button
         type='button'
-        className={`movie-card__btn ${
+        className={`movie-card__btn hover-effect ${
           pathname === '/movies'
             ? `movie-card__bookmark-btn ${
                 isSaved && 'movie-card__bookmark-btn_active'

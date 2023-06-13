@@ -16,7 +16,7 @@ function Promo() {
         <HashLink
           smooth
           to='/#about'
-          className='link promo__link'>
+          className='link link_theme_primary promo__link'>
           Узнать больше
         </HashLink>
       </div>

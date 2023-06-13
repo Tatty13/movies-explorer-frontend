@@ -16,15 +16,10 @@
 
 .nav__link {
   position: relative;
-  color: var(--color-text-primary);
 }
 
 .nav__link_active {
   font-weight: var(--text-weight-m);
-}
-
-.nav__link:hover {
-  opacity: 0.6;
 }
 
 .nav__link_style_btn {
@@ -64,7 +59,7 @@
   .nav__link_active::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: -6px;
     left: 50%;
     width: 0;
     height: 2px;
@@ -75,7 +70,7 @@
 
 @media screen and (max-width: 520px) {
   .nav__link_active::after {
-    bottom: -7px;
+    bottom: -9px;
   }
 }
 

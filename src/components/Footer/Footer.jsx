@@ -14,14 +14,15 @@ function Footer() {
           <p className='footer__text'>
             Учебный проект Яндекс.Практикум х BeatFilm.
           </p>
-          <p className='footer__copyright'>© 2022</p>
+          <p className='footer__copyright'>© 2023</p>
           <nav>
             <ul className='list footer__nav-list'>
               <li>
                 <NavLink
                   to='https://practicum.yandex.ru/'
                   target='_blank'
-                  className='link link_type_normal link_theme_primary link_place_footer'>
+                  className='link  link_theme_primary link_place_footer hover-effect hover-effect_type_opacity-60
+                  '>
                   Яндекс.Практикум
                 </NavLink>
               </li>
@@ -29,7 +30,8 @@ function Footer() {
                 <NavLink
                   to='https://github.com/Tatty13'
                   target='_blank'
-                  className='link link_type_normal link_theme_primary link_place_footer'>
+                  className='link link_theme_primary link_place_footer hover-effect hover-effect_type_opacity-60
+                  '>
                   Github
                 </NavLink>
               </li>

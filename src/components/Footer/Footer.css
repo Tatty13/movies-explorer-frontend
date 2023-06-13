@@ -26,6 +26,17 @@
   gap: 20px;
 }
 
+.link_place_footer {
+  display: block;
+  font-size: var(--text-xs);
+  line-height: var(--text-line-m);
+  font-weight: var(--text-weight-s);
+}
+
+.link_place_footer:active {
+  transform: scale(0.95);
+}
+
 @media screen and (max-width: 920px) {
   .container_place_footer {
     padding-left: var(--app-side-padding-tab-s);

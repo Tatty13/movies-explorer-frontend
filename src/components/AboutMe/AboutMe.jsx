@@ -19,7 +19,7 @@ function AboutMe() {
           <Link
             to='https://github.com/Tatty13'
             target='_blank'
-            className='link brief__link'>
+            className='link link_theme_primary brief__link hover-effect hover-effect_type_opacity-60'>
             Github
           </Link>
           <img
@@ -35,7 +35,7 @@ function AboutMe() {
               <Link
                 to='https://tatty13.github.io/how-to-learn/'
                 target='_blank'
-                className='link portfolio__link'>
+                className='link link_theme_primary portfolio__link hover-effect hover-effect_type_opacity-60'>
                 Статичный сайт
               </Link>
             </li>
@@ -43,7 +43,7 @@ function AboutMe() {
               <Link
                 to='https://tatty13.github.io/russian-travel/'
                 target='_blank'
-                className='link portfolio__link'>
+                className='link link_theme_primary portfolio__link hover-effect hover-effect_type_opacity-60'>
                 Адаптивный сайт
               </Link>
             </li>
@@ -51,7 +51,7 @@ function AboutMe() {
               <Link
                 to='https://tatty13.github.io/react-mesto-auth/'
                 target='_blank'
-                className='link portfolio__link'>
+                className='link link_theme_primary portfolio__link hover-effect hover-effect_type_opacity-60'>
                 Одностраничное приложение
               </Link>
             </li>

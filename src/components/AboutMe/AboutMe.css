@@ -54,12 +54,6 @@
   font-size: var(--text-s);
   line-height: var(--text-line-m);
   font-weight: var(--text-weight-m);
-  color: var(--color-text-primary);
-  transition: var(--transition-duration-main);
-}
-
-.brief__link:hover {
-  opacity: 0.6;
 }
 
 .brief__link::after {
@@ -116,8 +110,6 @@
   font-size: 30px;
   line-height: 1.67;
   letter-spacing: -0.04em;
-  color: var(--color-text-primary);
-  transition: var(--transition-duration-main);
 }
 
 .portfolio__link::after {
@@ -129,10 +121,6 @@
   height: 100%;
   background: center/contain url('../../assets/icons/link-arrow.svg') no-repeat;
   transition: var(--transition-duration-main) ease-in-out;
-}
-
-.portfolio__link:hover {
-  opacity: 0.6;
 }
 
 .portfolio__link:hover::after {
@@ -230,13 +218,12 @@
     justify-self: center;
   }
 
-
   .portfolio__title {
     margin-bottom: 20px;
     font-size: var(--text-s);
     line-height: var(--text-line-xl);
   }
-  
+
   .portfolio__link {
     font-size: var(--text-l);
     line-height: 1.56;

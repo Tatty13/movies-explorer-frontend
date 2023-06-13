@@ -25,7 +25,6 @@
   line-height: 1.23;
   background: none;
   border: none;
-  transition: var(--transition-duration-main);
 }
 
 .controls__btn_theme_normal {
@@ -36,10 +35,6 @@
 .controls__btn_theme_important {
   font-weight: var(--text-weight-m);
   color: var(--color-text-important);
-}
-
-.controls__btn:hover {
-  opacity: 0.7;
 }
 
 .controls__btn:active {

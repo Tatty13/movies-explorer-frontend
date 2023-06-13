@@ -32,7 +32,7 @@ function MoviesCardList({ movies, savedMovies }) {
   });
 
   return (
-    <section className='movies'>
+    <section className='movies' aria-label='Фильмы'>
       {!movies?.length ? (
         <p className='movies__not-found-text'>Ничего не найдено :(</p>
       ) : (

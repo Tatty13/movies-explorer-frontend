@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import './AboutMe.css';
+import myPhoto from '../../assets/images/me.jpg';
 
 function AboutMe() {
   return (
@@ -23,7 +24,7 @@ function AboutMe() {
             Github
           </Link>
           <img
-            src='https://avatars.githubusercontent.com/u/91495653?v=4'
+            src={myPhoto}
             alt='me'
             className='brief__img'
           />

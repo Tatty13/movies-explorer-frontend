@@ -21,6 +21,20 @@
   transition: var(--transition-duration-main);
 }
 
+.not-found__btn {
+  padding: 0;
+  font-size: var(--text-s);
+  line-height: var(--text-line-m);
+  font-weight: var(--text-weight-s);
+  color: var(--color-brand-secondary);
+  background: transparent;
+  border: none;
+}
+
+.not-found__btn:active {
+  transform: scale(0.96);
+}
+
 @media screen and (max-width: 768px) {
   .container_place_not-found {
     padding: 408px 0 222px;
@@ -40,5 +54,10 @@
   .not-found__accent {
     margin-bottom: 10px;
     font-size: 80px;
+  }
+
+  .not-found__btn {
+    font-size: var(--text-xxs);
+    line-height: 1.25;
   }
 }

@@ -1,5 +1,6 @@
 export * from './Header/Header';
 export * from './Logo/Logo';
+export * from './Nav/Nav';
 export * from './NavBar/NavBar';
 export * from './BurgerBtn/BurgerBtn';
 export * from './Footer/Footer';

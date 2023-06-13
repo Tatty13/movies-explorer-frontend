@@ -1,7 +1,6 @@
-import { Nav } from '../Nav/Nav';
-import { mainNavItems, authNavItems } from '../../utils/nav-items';
-
 import './NavBar.css';
+import { Nav } from '../';
+import { mainNavItems, authNavItems } from '../../utils/nav-items';
 
 function NavBar({ isLoggedIn, isOpen, onClose }) {
   return isLoggedIn ? (

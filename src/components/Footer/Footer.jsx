@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
+
 import './Footer.css';
 import { ROUTES_WITH_FOOTER } from '../../utils/constants';
 

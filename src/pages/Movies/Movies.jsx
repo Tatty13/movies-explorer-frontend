@@ -1,6 +1,5 @@
-import { MoviesCardList, SearchForm, Preloader } from '../../components';
-
 import './Movies.css';
+import { MoviesCardList, SearchForm, Preloader } from '../../components';
 
 function Movies({ movies, savedMovies }) {
   /**

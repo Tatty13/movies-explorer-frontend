@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Form } from '../../components';
 import './Profile.css';
-import { useState } from 'react';
+import { Form } from '../../components';
 
 function Profile({ user }) {
   const navigate = useNavigate();

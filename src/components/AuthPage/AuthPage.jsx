@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Logo, Form } from '../';
+
 import './AuthPage.css';
+import { Logo, Form } from '../';
 
 function AuthPage({ title, pageName, btnText, children }) {
   return (

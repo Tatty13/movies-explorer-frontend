@@ -1,6 +1,7 @@
-import { convertMinsToHhMm } from '../../utils/convertMinsToHhMm';
-import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
+
+import './MoviesCard.css';
+import { convertMinsToHhMm } from '../../utils/convertMinsToHhMm';
 
 function MoviesCard({ nameRU, duration, image, isSaved }) {
   /**

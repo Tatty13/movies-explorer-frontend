@@ -1,6 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import './Nav.css';
 import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+
+import './Nav.css';
 
 function Nav({ extraNavClasses, extraListClasses, navItems, isOpen, onClose }) {
   useEffect(() => {

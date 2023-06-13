@@ -1,11 +1,9 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import './Header.css';
 import { ROUTES_WITH_HEADER, ROUTES_WITH_NAVBAR } from '../../utils/constants';
-
-import { Logo } from '../Logo/Logo';
-import { NavBar } from '../NavBar/NavBar';
-import { BurgerBtn } from '../BurgerBtn/BurgerBtn';
-import { useState } from 'react';
+import { Logo, NavBar, BurgerBtn } from '../';
 
 function Header() {
   const { pathname } = useLocation();

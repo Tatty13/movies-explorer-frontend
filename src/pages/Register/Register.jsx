@@ -1,5 +1,4 @@
 import './Register.css';
-
 import { AuthPage } from '../../components';
 
 function Register() {

@@ -27,12 +27,8 @@
   line-height: 1.25;
   font-weight: var(--text-weight-m);
   color: var(--color-text-primary);
-
   background: var(--color-bg-more_btn);
   border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: var(--transition-duration-main);
 }
 
 .movies__more-btn:hover {
@@ -50,12 +46,9 @@
   }
 
   .movies__not-found-text {
-   
     font-size: var(--text-s);
-    
   }
 }
-
 
 @media screen and (max-width: 452px) {
   .movies {

@@ -8,7 +8,6 @@
 .form__submit-btn {
   margin-top: auto;
   margin-bottom: 0;
-  padding: 0;
   height: 45px;
   font-size: var(--text-s);
   font-weight: var(--text-weight-m);
@@ -16,7 +15,6 @@
   color: var(--color-text-primary);
   background: var(--color-brand-secondary);
   border-radius: 3px;
-  border: 0;
   transition: var(--transition-duration-main);
 }
 

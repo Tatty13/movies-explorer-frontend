@@ -44,12 +44,9 @@
 .movie-card__btn {
   grid-area: btn;
   place-self: center;
-  padding: 0;
   width: 30px;
   height: 30px;
-  border: none;
   border-radius: 50%;
-  cursor: pointer;
   background: var(--color-bg-profile_btn) no-repeat center;
 }
 

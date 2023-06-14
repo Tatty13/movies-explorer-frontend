@@ -19,12 +19,10 @@
 }
 
 .controls__btn {
-  padding: 0;
   height: min-content;
   font-size: var(--text-xs);
   line-height: 1.23;
   background: none;
-  border: none;
 }
 
 .controls__btn_theme_normal {

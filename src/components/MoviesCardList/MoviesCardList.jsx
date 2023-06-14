@@ -41,7 +41,7 @@ function MoviesCardList({ movies, savedMovies }) {
       {movies.length > 3 && (
         <button
           type='button'
-          className='movies__more-btn'>
+          className='btn movies__more-btn hover-effect'>
           Ещё
         </button>
       )}

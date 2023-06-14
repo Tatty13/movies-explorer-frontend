@@ -58,6 +58,13 @@
   list-style: none;
 }
 
+.btn {
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
 .hover-effect {
   transition: var(--transition-duration-main);
 }

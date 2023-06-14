@@ -13,7 +13,7 @@ function NotFound() {
       <h1 className='not-found__title'>Страница не найдена</h1>
       <button
         onClick={goBack}
-        className='not-found__btn hover-effect hover-effect_type_opacity-60'>
+        className='btn not-found__btn hover-effect hover-effect_type_opacity-60'>
         Назад
       </button>
     </section>

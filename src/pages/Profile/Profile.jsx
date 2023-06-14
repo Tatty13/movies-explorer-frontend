@@ -63,14 +63,14 @@ function Profile({ user }) {
           <button
             onClick={handleInfoEdit}
             type='button'
-            className='controls__btn controls__btn_theme_normal hover-effect hover-effect_type_opacity-60
+            className='btn controls__btn controls__btn_theme_normal hover-effect hover-effect_type_opacity-60
             '>
             Редактировать
           </button>
           <button
             onClick={handleSignout}
             type='button'
-            className='controls__btn controls__btn_theme_important hover-effect hover-effect_type_opacity-60
+            className='btn controls__btn controls__btn_theme_important hover-effect hover-effect_type_opacity-60
             '>
             Выйти из аккаунта
           </button>

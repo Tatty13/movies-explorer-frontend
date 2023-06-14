@@ -10,7 +10,7 @@ function Form({ name, btnText, onSubmit, isEditMode = true, children }) {
       noValidate>
       {children}
       <button
-        className={`form__submit-btn ${
+        className={`btn form__submit-btn ${
           !isEditMode && 'form__submit-btn_invisible'
         }`}
         type='submit'

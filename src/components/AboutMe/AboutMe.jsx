@@ -25,7 +25,7 @@ function AboutMe() {
           </Link>
           <img
             src={myPhoto}
-            alt='me'
+            alt='Моё фото'
             className='brief__img'
           />
         </article>

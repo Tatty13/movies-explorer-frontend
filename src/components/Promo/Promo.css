@@ -1,0 +1,96 @@
+.promo {
+  background-color: var(--color-bg-hero);
+}
+
+.container_place_promo {
+  min-height: 574px;
+  padding: 75px var(--app-side-padding-desktop);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background: right 70px top 75px / 310px 304px
+    url('../../assets/icons/landing-logo.svg') no-repeat;
+  transition: var(--transition-duration-main);
+}
+
+.promo__title {
+  max-width: 640px;
+  margin: 0 0 36px;
+  font-size: var(--text-xxl);
+  font-weight: var(--text-weight-s);
+  line-height: var(--text-line-s);
+  transition: var(--transition-duration-main);
+}
+
+.promo__subtitle {
+  max-width: 310px;
+  margin: 0 0 146px;
+  font-size: var(--text-xs);
+  line-height: var(--text-line-m);
+  color: var(--color-text-primary-rgpa-50);
+  transition: var(--transition-duration-main);
+}
+
+.promo__nospace {
+  white-space: nowrap;
+}
+
+.promo__link {
+  padding: 9px 19px;
+  font-size: var(--text-xxs);
+  line-height: var(--text-line-l);
+  text-decoration: none;
+  border: 1px solid var(--color-border-btn-rgba-60);
+  border-radius: 3px;
+}
+
+.promo__link:hover {
+  box-shadow: 0px 0px 5px 0px var(--color-text-primary-rgpa-50);
+}
+
+.promo__link:active {
+  box-shadow: none;
+}
+
+@media screen and (max-width: 1068px) {
+  .container_place_promo {
+    min-height: 850px;
+    align-items: center;
+    text-align: center;
+    background-position: center top 140px;
+  }
+
+  .promo__title {
+    margin-bottom: 22px;
+    font-size: 40px;
+    line-height: 1.25;
+  }
+
+  .promo__subtitle {
+    max-width: 260px;
+    margin-bottom: 92px;
+  }
+}
+
+@media screen and (max-width: 712px) {
+  .container_place_promo {
+    min-height: 636px;
+    padding: 30px var(--app-side-padding-mobile-xs);
+    background-size: 210px 206px;
+    background-position-y: 70px;
+  }
+
+  .promo__title {
+    max-width: 300px;
+    margin-bottom: 24px;
+    font-size: 30px;
+    line-height: 1.27;
+    letter-spacing: -0.04em;
+  }
+
+  .promo__subtitle {
+    max-width: 260px;
+    margin-bottom: 80px;
+  }
+}

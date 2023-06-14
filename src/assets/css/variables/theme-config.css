@@ -1,0 +1,32 @@
+@import url('./palette.css');
+
+:root {
+  --color-brand-primary: var(--color-green);
+  --color-brand-secondary: var(--color-blue);
+
+  --color-bg-primary: var(--color-very-dark-gray-3); /* 202020 */
+  --color-bg-secondary: var(--color-very-dark-gray-2); /* 222 */
+  --color-bg-tertiary: var(--color-very-dark-gray-1); /* 272727 */
+  --color-bg-hero: var(--color-dark-blue);
+  --color-bg-overlay: var(--color-black-rgba-30);
+
+  --color-bg-profile_btn: var(--color-dark-gray1); /* 313131 */
+  --color-bg-more_btn: var(--color-dark-gray3); /* 2f2f2f */
+  --color-bg-blocks: var(--color-dark-gray2); /* 303030 */
+
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-light-gray-1); /* 8b8b8b */
+  --color-text-tertiary: var(--color-black);
+  --color-text-error: var(--color-red);
+  --color-text-important: var(--color-red);
+  --color-text-primary-rgpa-50: var(--color-white-rgba-50);
+
+  --color-border-primary: var(--color-gray-2); /*424242*/
+  --color-border-title: var(--color-very-light-gray-1); /*dadada*/
+  --color-border-landing_link: var(--color-very-light-gray-2); /*e6e6e6*/
+  --color-border-nav_link: var(--color-white);
+  --color-border-btn: var(--color-white);
+  --color-border-btn-rgba-60: var(--color-white-rgba-60);
+  --color-border-success: var(--color-blue);
+  --color-border-delimiter: var(--color-gray-1); /*505050*/
+}

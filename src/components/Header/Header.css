@@ -1,0 +1,34 @@
+.header {
+  box-sizing: border-box;
+}
+
+.header_theme_hero {
+  background-color: var(--color-bg-hero);
+}
+
+.header_theme_normal {
+  background-color: var(--color-bg-primary);
+}
+
+.container_place_header {
+  min-height: 74px;
+  padding: 0 var(--app-side-padding-desktop) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 44px;
+}
+
+@media screen and (max-width: 920px) {
+  .container_place_header {
+    padding-left: var(--app-side-padding-tab-s);
+    padding-right: var(--app-side-padding-tab-s);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .container_place_header {
+    padding-left: var(--app-side-padding-mobile-s);
+    padding-right: var(--app-side-padding-mobile-s);
+  }
+}

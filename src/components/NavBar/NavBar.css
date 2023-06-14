@@ -1,0 +1,115 @@
+.main-nav__list {
+  align-items: center;
+  gap: 16px;
+}
+
+.auth-nav__list {
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+}
+
+.main-nav__list .nav__item:last-of-type {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.main-nav__list .nav__link {
+  font-size: var(--text-xs);
+  line-height: 1.38;
+}
+
+.auth-nav__list .nav__link {
+  font-size: var(--text-xxs);
+  line-height: var(--text-line-l);
+}
+
+.main-nav__list .nav__link_style_btn {
+  font-size: var(--text-s);
+  line-height: 1.14;
+  border-radius: 20px;
+}
+
+.auth-nav__list .nav__link_style_btn {
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-nav {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    background: var(--color-bg-overlay);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-duration-main);
+  }
+
+  .main-nav_open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .main-nav__list {
+    position: fixed;
+    right: -100vw;
+    top: 0;
+    padding-top: 159px;
+    padding-bottom: 90px;
+    min-width: 520px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    background: var(--color-bg-primary);
+    transition: var(--transition-duration-main);
+  }
+
+  .main-nav_open .main-nav__list {
+    right: 0;
+  }
+
+  .main-nav__list .nav__item:last-of-type {
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .main-nav__list .nav__link:not(.nav__link_style_btn) {
+    font-size: var(--text-l);
+    font-weight: var(--text-weight-m);
+    line-height: 1.22;
+  }
+
+  .header_theme_hero .main-nav .nav__link_style_btn {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-profile_btn);
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .main-nav__list {
+    padding-top: 144px;
+    padding-bottom: 46px;
+    min-width: 100%;
+    gap: 24px;
+  }
+
+  .auth-nav__list {
+    gap: 14px;
+  }
+
+  .auth-nav__list .nav__link {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .auth-nav__list .nav__link_style_btn {
+    padding: 7px 12px;
+  }
+}

@@ -1,0 +1,236 @@
+.container_place_about-me {
+  padding: 110px var(--app-side-padding-desktop) 107px;
+}
+
+.about-me__title {
+  margin-bottom: 66px;
+}
+
+.brief {
+  min-height: 327px;
+  margin-bottom: 100px;
+  display: grid;
+  grid-template-areas:
+    'title img'
+    'subtitle img'
+    'desc img'
+    'link img';
+  grid-template-columns: 1fr 270px;
+  grid-template-rows: repeat(2, min-content) 1fr;
+  column-gap: 49px;
+  transition: var(--transition-duration-main);
+}
+
+.brief__title {
+  grid-area: title;
+  margin: 0 0 18px;
+  font-size: var(--text-xxl);
+  font-weight: var(--text-weight-s);
+  line-height: var(--text-line-s);
+  letter-spacing: -0.04em;
+  transition: var(--transition-duration-main);
+}
+
+.brief__subtitle {
+  grid-area: subtitle;
+  margin: 0 0 26px;
+  font-size: var(--text-l);
+  line-height: 1.11;
+  font-weight: var(--text-weight-m);
+}
+
+.brief__desc {
+  grid-area: desc;
+  margin: 0;
+  max-width: 600px;
+  font-size: var(--text-s);
+  line-height: 1.57;
+}
+
+.brief__link {
+  grid-area: link;
+  position: relative;
+  width: fit-content;
+  font-size: var(--text-s);
+  line-height: var(--text-line-m);
+  font-weight: var(--text-weight-m);
+}
+
+.brief__link::after {
+  content: '';
+  position: absolute;
+  right: -16px;
+  bottom: 0px;
+  width: 10px;
+  height: 100%;
+  background: center/contain url('../../assets/icons/link-arrow.svg') no-repeat;
+  opacity: 0;
+  transition: var(--transition-duration-main) ease-in-out;
+}
+
+.brief__link:hover::after {
+  opacity: 1;
+  right: -26px;
+  filter: invert(45%) sepia(57%) saturate(777%) hue-rotate(181deg)
+    brightness(98%) contrast(96%);
+}
+
+.brief__link:active {
+  transform: scale(0.95);
+}
+
+.brief__img {
+  grid-area: img;
+  max-width: 100%;
+  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio__title {
+  margin: 0 0 30px;
+  font-size: var(--text-l);
+  line-height: 1.11;
+  font-weight: var(--text-weight-s);
+  color: var(--color-text-secondary);
+}
+
+.portfolio__list {
+  flex-direction: column;
+}
+
+.portfolio__item:not(.portfolio__item:last-child) {
+  border-bottom: 1px solid var(--color-border-landing_link);
+}
+
+.portfolio__link {
+  position: relative;
+  display: block;
+  padding: 20px 0 19px;
+  font-size: 30px;
+  line-height: 1.67;
+  letter-spacing: -0.04em;
+}
+
+.portfolio__link::after {
+  content: '';
+  position: absolute;
+  right: 5px;
+  bottom: -4px;
+  width: 19px;
+  height: 100%;
+  background: center/contain url('../../assets/icons/link-arrow.svg') no-repeat;
+  transition: var(--transition-duration-main) ease-in-out;
+}
+
+.portfolio__link:hover::after {
+  filter: invert(45%) sepia(57%) saturate(777%) hue-rotate(181deg)
+    brightness(98%) contrast(96%);
+}
+
+.portfolio__link:active {
+  transform: scale(0.99);
+}
+
+@media screen and (max-width: 920px) {
+  .container_place_about-me {
+    padding: 90px var(--app-side-padding-tab-m) 71px;
+  }
+
+  .brief {
+    min-height: 307px;
+    margin-bottom: 90px;
+    grid-template-columns: 1fr 255px;
+  }
+
+  .brief__title {
+    margin-bottom: 16px;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .brief__subtitle {
+    margin-bottom: 20px;
+    font-size: var(--text-xxs);
+    line-height: 1.5;
+  }
+
+  .brief__desc {
+    font-size: var(--text-xxs);
+    line-height: 1.5;
+  }
+
+  .portfolio__title {
+    color: #a0a0a0;
+  }
+
+  .portfolio__link {
+    font-size: 28px;
+    line-height: 1.79;
+  }
+
+  .portfolio__link::after {
+    width: 17px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .container_place_about-me {
+    padding: 70px var(--app-side-padding-mobile-s) 51px;
+  }
+
+  .about-me__title {
+    margin-bottom: 60px;
+  }
+
+  .brief {
+    margin-bottom: 70px;
+    grid-template-areas:
+      'img'
+      'title'
+      'subtitle'
+      'desc'
+      'link';
+    grid-template-columns: 1fr;
+    grid-template-rows: 352px repeat(4, max-content);
+  }
+
+  .brief__title {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .brief__subtitle {
+    font-size: var(--text-xxxs);
+    line-height: 1.45;
+  }
+
+  .brief__desc {
+    margin-bottom: 40px;
+    font-size: var(--text-xxxs);
+    line-height: 1.45;
+  }
+
+  .brief__img {
+    height: 100%;
+    justify-self: center;
+  }
+
+  .portfolio__title {
+    margin-bottom: 20px;
+    font-size: var(--text-s);
+    line-height: var(--text-line-xl);
+  }
+
+  .portfolio__link {
+    font-size: var(--text-l);
+    line-height: 1.56;
+  }
+
+  .portfolio__link::after {
+    width: 11px;
+    bottom: 0;
+  }
+}

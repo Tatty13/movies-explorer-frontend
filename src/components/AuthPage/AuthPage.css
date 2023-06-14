@@ -1,0 +1,56 @@
+.auth {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  max-width: 396px;
+  min-height: 700px;
+}
+
+.auth__title {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.auth__text {
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-size: var(--text-s);
+  line-height: var(--text-line-m);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.auth__link {
+  margin-left: 4px;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: var(--text-weight-s);
+  color: var(--color-brand-secondary);
+}
+
+@media screen and (max-width: 768px) {
+  .auth {
+    padding-top: 232px;
+    padding-bottom: 232px;
+    min-height: 1024px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .auth {
+    padding-top: 56px;
+    padding-bottom: 30px;
+    min-height: 780px;
+    align-items: center;
+  }
+
+  .auth__title {
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+
+  .auth__text {
+    margin-top: 14px;
+    font-size: var(--text-xxs);
+    line-height: 1.25;
+  }
+}

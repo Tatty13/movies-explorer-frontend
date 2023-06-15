@@ -14,3 +14,4 @@ export * from './MoviesCard/MoviesCard';
 export * from './Form/Form';
 export * from './AuthPage/AuthPage';
 export * from './Preloader/Preloader';
+export * from './ProtectedRoute/ProtectedRoute';

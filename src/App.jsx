@@ -2,20 +2,21 @@ import { useRef, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Landing, Login, Movies, NotFound, Profile, Register } from './pages';
-import { Footer, Header } from './components';
-import { movies, savedMovies } from './utils/movies-data';
+import { Footer, Header, ProtectedRoute } from './components';
+import { savedMovies } from './utils/movies-data';
 
 import { mainApi, moviesApi } from './utils/api';
 
 function App() {
   const shouldMountMovies = useRef(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser] = useState({
     name: 'Виталий',
     email: 'pochta@yandex.ru',
   });
 
   const [isLoading, setIsLoading] = useState(false);
-
   const [beatfilmMovies, setBeatfilmMovies] = useState([]);
 
   async function getMoviesFromBeatfilm() {
@@ -51,7 +52,9 @@ function App() {
           <Route
             path='/movies'
             element={
-              <Movies
+              <ProtectedRoute
+                component={Movies}
+                isLoggedIn={isLoggedIn}
                 movies={beatfilmMovies}
                 savedMovies={savedMovies}
                 isLoading={isLoading}
@@ -62,11 +65,23 @@ function App() {
           />
           <Route
             path='/saved-movies'
-            element={<Movies movies={savedMovies} />}
+            element={
+              <ProtectedRoute
+                component={Movies}
+                isLoggedIn={isLoggedIn}
+                movies={savedMovies}
+              />
+            }
           />
           <Route
             path='/profile'
-            element={<Profile user={currentUser} />}
+            element={
+              <ProtectedRoute
+                component={Profile}
+                isLoggedIn={isLoggedIn}
+                user={currentUser}
+              />
+            }
           />
           <Route
             path='*'

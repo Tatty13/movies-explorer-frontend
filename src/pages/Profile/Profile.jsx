@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Profile.css';
+import { CurrentUserContext } from '../../contexts';
 import { Form } from '../../components';
 
-function Profile({ user }) {
+function Profile({}) {
+  const { name, email } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const [isEditMode, setEditModeState] = useState(false);
 
@@ -22,9 +24,7 @@ function Profile({ user }) {
 
   return (
     <section className={`container section profile`}>
-      <h1 className='section__title profile__title'>
-        {`Привет, ${user.name}!`}
-      </h1>
+      <h1 className='section__title profile__title'>{`Привет, ${name}!`}</h1>
       <Form
         name='profile'
         onSubmit={handleSubmit}
@@ -36,7 +36,7 @@ function Profile({ user }) {
             type='text'
             name='name'
             placeholder='Введите имя'
-            defaultValue={user.name}
+            defaultValue={name}
             minLength='2'
             maxLength='30'
             required
@@ -51,7 +51,7 @@ function Profile({ user }) {
             type='email'
             name='email'
             placeholder='Введите Email'
-            defaultValue={user.email}
+            defaultValue={email}
             required
             disabled={!isEditMode}
           />

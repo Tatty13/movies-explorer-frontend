@@ -1,15 +1,35 @@
+import { useRef, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Landing, Login, Movies, NotFound, Profile, Register } from './pages';
 import { Footer, Header } from './components';
 import { movies, savedMovies } from './utils/movies-data';
-import { useState } from 'react';
+
+import { mainApi, moviesApi } from './utils/api';
 
 function App() {
+  const shouldMountMovies = useRef(false);
   const [currentUser] = useState({
     name: 'Виталий',
     email: 'pochta@yandex.ru',
   });
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [beatfilmMovies, setBeatfilmMovies] = useState([]);
+
+  async function getMoviesFromBeatfilm() {
+    setIsLoading(true);
+    try {
+      const movies = await moviesApi.getMovies();
+      shouldMountMovies.current = true;
+      setBeatfilmMovies(movies);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <>
@@ -32,8 +52,11 @@ function App() {
             path='/movies'
             element={
               <Movies
-                movies={movies}
+                movies={beatfilmMovies}
                 savedMovies={savedMovies}
+                isLoading={isLoading}
+                onSearch={getMoviesFromBeatfilm}
+                shouldMount={shouldMountMovies.current}
               />
             }
           />

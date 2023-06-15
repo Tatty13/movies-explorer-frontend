@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm({ onSubmit }) {
   const [isFilterActive, setFilterState] = useState(true);
 
   const toggleFilter = () => setFilterState(!isFilterActive);
@@ -10,7 +10,8 @@ function SearchForm() {
   return (
     <form
       className='search-form'
-      name='search'>
+      name='search'
+      onSubmit={onSubmit}>
       <div className='search'>
         <input
           type='text'

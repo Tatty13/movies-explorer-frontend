@@ -2,12 +2,6 @@ import './MoviesCardList.css';
 import { MoviesCard } from '../MoviesCard/MoviesCard';
 
 function MoviesCardList({ movies, savedMovies }) {
-  /**
-   *  для тестировани вёрстки, когда фильмы не найдены.
-   * todo- удалить на этапе 3
-   */
-  // movies = [];
-
   const moviesList = movies.map((movie) => {
     const { nameRU, duration, image, trailerLink } = movie;
 
@@ -33,22 +27,7 @@ function MoviesCardList({ movies, savedMovies }) {
   });
 
   return (
-    <section
-      className='movies'
-      aria-label='Фильмы'>
-      {!movies?.length ? (
-        <p className='movies__not-found-text'>Ничего не найдено :(</p>
-      ) : (
-        <ul className='list movies__list'>{moviesList}</ul>
-      )}
-      {movies.length > 3 && (
-        <button
-          type='button'
-          className='btn movies__more-btn hover-effect'>
-          Ещё
-        </button>
-      )}
-    </section>
+  <ul className='list movies__list'>{moviesList}</ul>
   );
 }
 

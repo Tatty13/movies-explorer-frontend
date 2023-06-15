@@ -2,11 +2,7 @@ import { useState } from 'react';
 
 import './SearchForm.css';
 
-function SearchForm({ onSubmit }) {
-  const [isFilterActive, setFilterState] = useState(true);
-
-  const toggleFilter = () => setFilterState(!isFilterActive);
-
+function SearchForm({ isFilterActive, onFilterClick, onSubmit }) {
   return (
     <form
       className='search-form'
@@ -14,6 +10,7 @@ function SearchForm({ onSubmit }) {
       onSubmit={onSubmit}>
       <div className='search'>
         <input
+          name='search'
           type='text'
           placeholder='Фильм'
           className='search__input'
@@ -29,7 +26,7 @@ function SearchForm({ onSubmit }) {
         <button
           type='button'
           aria-label='Фильтровать'
-          onClick={toggleFilter}
+          onClick={onFilterClick}
           className={`btn filter__btn hover-effect hover-effect_type_opacity-60
           ${!isFilterActive && 'filter__btn_inactive'}`}>
           <span className='filter__switch'></span>

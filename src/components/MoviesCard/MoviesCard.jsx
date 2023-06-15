@@ -2,8 +2,9 @@ import { useLocation } from 'react-router-dom';
 
 import './MoviesCard.css';
 import { convertMinsToHhMm } from '../../utils/convertMinsToHhMm';
+import { Link } from 'react-router-dom';
 
-function MoviesCard({ nameRU, duration, image, isSaved }) {
+function MoviesCard({ nameRU, duration, image, trailerLink, isSaved }) {
   /**
    * todo - удалить на этапе 3
    */
@@ -12,6 +13,11 @@ function MoviesCard({ nameRU, duration, image, isSaved }) {
 
   return (
     <article className='movie-card'>
+      <Link
+        to={trailerLink}
+        target='_blank'
+        className='link movie-card__link hover-effect'
+      />
       <h2 className='movie-card__title'>{nameRU}</h2>
       <span className='movie-card__duration'>
         {convertMinsToHhMm(duration)}

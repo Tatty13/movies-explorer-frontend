@@ -9,7 +9,7 @@ function MoviesCardList({ movies, savedMovies }) {
   // movies = [];
 
   const moviesList = movies.map((movie) => {
-    const { nameRU, duration, image } = movie;
+    const { nameRU, duration, image, trailerLink } = movie;
 
     const imageUrl = image.url
       ? `https://api.nomoreparties.co/${image.url}`
@@ -25,6 +25,7 @@ function MoviesCardList({ movies, savedMovies }) {
           nameRU={nameRU}
           duration={duration}
           image={imageUrl}
+          trailerLink={trailerLink}
           isSaved={isSaved}
         />
       </li>
@@ -32,7 +33,9 @@ function MoviesCardList({ movies, savedMovies }) {
   });
 
   return (
-    <section className='movies' aria-label='Фильмы'>
+    <section
+      className='movies'
+      aria-label='Фильмы'>
       {!movies?.length ? (
         <p className='movies__not-found-text'>Ничего не найдено :(</p>
       ) : (

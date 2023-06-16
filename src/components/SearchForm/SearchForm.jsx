@@ -2,10 +2,16 @@ import { useState } from 'react';
 
 import './SearchForm.css';
 
-function SearchForm({ isFilterActive, onFilterClick, onSubmit }) {
+function SearchForm({
+  isFilterActive,
+  onFilterClick,
+  onSubmit,
+  searchValue,
+  onChange,
+}) {
   return (
     <form
-      className='search-form'
+      className='form search-form'
       name='search'
       onSubmit={onSubmit}>
       <div className='search'>

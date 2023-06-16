@@ -1,7 +1,10 @@
 .form {
   width: 100%;
-  flex-grow: 1;
   display: flex;
+}
+
+.auth-form {
+  flex-grow: 1;
   flex-direction: column;
 }
 

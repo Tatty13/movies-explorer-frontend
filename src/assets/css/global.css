@@ -42,6 +42,11 @@
   line-height: var(--text-line-m);
 }
 
+.form {
+  width: 100%;
+  display: flex;
+}
+
 .link {
   text-decoration: none;
   cursor: pointer;

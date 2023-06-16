@@ -4,7 +4,7 @@ function Form({ name, btnText, onSubmit, isEditMode = true, children }) {
   return (
     <form
       onSubmit={onSubmit}
-      className={`form form_place_${name}`}
+      className={`form auth-form form_place_${name}`}
       action='#'
       name={name}
       noValidate>

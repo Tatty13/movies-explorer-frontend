@@ -1,6 +1,15 @@
 import './Form.css';
 
-function Form({ name, btnText, onSubmit, isEditMode = true, children }) {
+function Form({
+  name,
+  btnText,
+  loadingText,
+  isLoading,
+  onSubmit,
+  isEditMode = true,
+  isFormValid,
+  children,
+}) {
   return (
     <form
       onSubmit={onSubmit}
@@ -12,10 +21,11 @@ function Form({ name, btnText, onSubmit, isEditMode = true, children }) {
       <button
         className={`btn form__submit-btn ${
           !isEditMode && 'form__submit-btn_invisible'
-        }`}
+        } ${!isFormValid && 'form__submit-btn_disabled'}`}
         type='submit'
-        name='submit-btn'>
-        {btnText || 'Сохранить'}
+        name='submit-btn'
+        disabled={!isFormValid}>
+        {isLoading ? loadingText || 'Сохранение...' : btnText || 'Сохранить'}
       </button>
     </form>
   );

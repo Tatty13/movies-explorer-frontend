@@ -3,7 +3,16 @@ import { Link } from 'react-router-dom';
 import './AuthPage.css';
 import { Logo, Form } from '../';
 
-function AuthPage({ title, pageName, btnText, children }) {
+function AuthPage({
+  title,
+  pageName,
+  btnText,
+  loadingText,
+  isLoading,
+  isFormValid,
+  onSubmit,
+  children,
+}) {
   return (
     <section className='container section auth'>
       <Logo />
@@ -11,7 +20,11 @@ function AuthPage({ title, pageName, btnText, children }) {
       <Form
         title={title}
         name={pageName}
-        btnText={btnText}>
+        isLoading={isLoading}
+        loadingText={loadingText || 'Загрузка...'}
+        btnText={btnText}
+        isFormValid={isFormValid}
+        onSubmit={onSubmit}>
         {children}
       </Form>
       {pageName === 'register' && (

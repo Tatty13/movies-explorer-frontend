@@ -8,8 +8,11 @@ function Form({
   onSubmit,
   isEditMode = true,
   isFormValid,
+  isSubmitForbidden = false,
   children,
 }) {
+  const isSubminBtnDisabled = !isFormValid || isSubmitForbidden;
+
   return (
     <form
       onSubmit={onSubmit}
@@ -21,10 +24,10 @@ function Form({
       <button
         className={`btn form__submit-btn ${
           !isEditMode && 'form__submit-btn_invisible'
-        } ${!isFormValid && 'form__submit-btn_disabled'}`}
+        } ${isSubminBtnDisabled && 'form__submit-btn_disabled'}`}
         type='submit'
         name='submit-btn'
-        disabled={!isFormValid}>
+        disabled={isSubminBtnDisabled}>
         {isLoading ? loadingText || 'Сохранение...' : btnText || 'Сохранить'}
       </button>
     </form>

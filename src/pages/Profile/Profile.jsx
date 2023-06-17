@@ -1,14 +1,29 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts';
 import { Form, FormBlockWithInput } from '../../components';
+import { useInput, useValidation } from '../../hooks';
 
-function Profile({}) {
+function Profile({ onUpdateUser, isLoading }) {
   const { name, email } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const [isEditMode, setEditModeState] = useState(false);
+  const [isSubmitForbidden, setIsSubmitForbidden] = useState(true);
+
+  const { values: userData, handleInputChange } = useInput({
+    name,
+    email,
+  });
+
+  const { errorMessages, isFormValid, isInputsValid, handleValidityChange } =
+    useValidation();
+
+  const handleChange = (evt) => {
+    handleInputChange(evt);
+    handleValidityChange(evt);
+  };
 
   const handleSignout = () => {
     navigate('/', { replace: true });
@@ -18,9 +33,15 @@ function Profile({}) {
     setEditModeState(true);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    // await onUpdateUser();
     setEditModeState(false);
   };
+
+  useEffect(() => {
+    setIsSubmitForbidden(name === userData.name && email === userData.email);
+  }, [name, email, userData.name, userData.email]);
 
   return (
     <section className={`container section profile`}>
@@ -28,26 +49,35 @@ function Profile({}) {
       <Form
         name='profile'
         onSubmit={handleSubmit}
+        isLoading={isLoading}
+        isFormValid={isFormValid}
+        isSubmitForbidden={isSubmitForbidden}
         isEditMode={isEditMode}>
         <FormBlockWithInput
           mode='row'
           blockName='Имя'
+          errorMessage={errorMessages.name}
           type='text'
           name='name'
           placeholder='Введите имя'
-          defaultValue={name}
           minLength='2'
           maxLength='30'
+          value={userData.name}
+          onChange={handleChange}
+          isValid={isInputsValid.name}
           required
           disabled={!isEditMode}
         />
         <FormBlockWithInput
           mode='row'
           blockName='E-mail'
+          errorMessage={errorMessages.email}
           type='email'
           name='email'
           placeholder='Введите Email'
-          defaultValue={email}
+          value={userData.email}
+          onChange={handleChange}
+          isValid={isInputsValid.email}
           required
           disabled={!isEditMode}
         />

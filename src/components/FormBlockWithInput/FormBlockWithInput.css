@@ -35,6 +35,7 @@
   min-height: 12px;
   font-size: 10px;
   line-height: 1.2;
+  word-break: break-all;
   color: var(--color-text-error);
 }
 

@@ -1,9 +1,12 @@
-import './Login.css';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import './Login.css';
 import { AuthPage, FormBlockWithInput } from '../../components/';
 import { useInput, useValidation } from '../../hooks';
 
-function Login({ onSignin, isLoading }) {
+function Login({ onSignin, isLoading, isLoggedIn }) {
+  const navigate = useNavigate();
   const { values: loginData, handleInputChange } = useInput({
     email: '',
     password: '',
@@ -21,6 +24,10 @@ function Login({ onSignin, isLoading }) {
     evt.preventDefault();
     onSignin(loginData);
   }
+
+  useEffect(() => {
+    isLoggedIn && navigate('/', { replace: true });
+  }, [isLoggedIn, navigate]);
 
   return (
     <AuthPage

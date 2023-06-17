@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './Register.css';
 import { AuthPage, FormBlockWithInput } from '../../components';
 import { useInput, useValidation } from '../../hooks';
 
-function Register({ onSignup, isLoading }) {
+function Register({ onSignup, isLoading, isLoggedIn }) {
+  const navigate = useNavigate();
+
   const { values: singupData, handleInputChange } = useInput({
     email: '',
     password: '',
@@ -21,6 +26,11 @@ function Register({ onSignup, isLoading }) {
     evt.preventDefault();
     onSignup(singupData);
   }
+
+  useEffect(() => {
+    isLoggedIn && navigate('/', { replace: true });
+  }, [isLoggedIn, navigate]);
+
   return (
     <AuthPage
       title='Добро пожаловать!'

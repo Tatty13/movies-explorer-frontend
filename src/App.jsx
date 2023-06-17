@@ -41,11 +41,21 @@ function App() {
             />
             <Route
               path='/signin'
-              element={<Login isLoading={isLoading} />}
+              element={
+                <Login
+                  isLoading={isLoading}
+                  isLoggedIn={isLoggedIn}
+                />
+              }
             />
             <Route
               path='/signup'
-              element={<Register isLoading={isLoading} />}
+              element={
+                <Register
+                  isLoading={isLoading}
+                  isLoggedIn={isLoggedIn}
+                />
+              }
             />
             <Route
               path='/movies'

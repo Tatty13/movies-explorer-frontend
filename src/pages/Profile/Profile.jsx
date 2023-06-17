@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts';
-import { Form } from '../../components';
+import { Form, FormBlockWithInput } from '../../components';
 
 function Profile({}) {
   const { name, email } = useContext(CurrentUserContext);
@@ -29,34 +29,28 @@ function Profile({}) {
         name='profile'
         onSubmit={handleSubmit}
         isEditMode={isEditMode}>
-        <label className='form__block form__block_mode_row'>
-          Имя
-          <input
-            className={`form__input form__input_mode_row`}
-            type='text'
-            name='name'
-            placeholder='Введите имя'
-            defaultValue={name}
-            minLength='2'
-            maxLength='30'
-            required
-            disabled={!isEditMode}
-          />
-          <span className='form__input-error form__input-error_mode_row'></span>
-        </label>
-        <label className='form__block form__block_mode_row'>
-          E-mail
-          <input
-            className={`form__input form__input_mode_row`}
-            type='email'
-            name='email'
-            placeholder='Введите Email'
-            defaultValue={email}
-            required
-            disabled={!isEditMode}
-          />
-          <span className='form__input-error form__input-error_mode_row'></span>
-        </label>
+        <FormBlockWithInput
+          mode='row'
+          blockName='Имя'
+          type='text'
+          name='name'
+          placeholder='Введите имя'
+          defaultValue={name}
+          minLength='2'
+          maxLength='30'
+          required
+          disabled={!isEditMode}
+        />
+        <FormBlockWithInput
+          mode='row'
+          blockName='E-mail'
+          type='email'
+          name='email'
+          placeholder='Введите Email'
+          defaultValue={email}
+          required
+          disabled={!isEditMode}
+        />
       </Form>
       {!isEditMode && (
         <div className='controls'>

@@ -8,33 +8,63 @@ import {
   SectionWithMovies,
 } from '../../components';
 import { moviesApi } from '../../utils/api';
+import { useInput } from '../../hooks';
+import { filterMovies } from '../../utils/filterMovies';
+import { getDataFromLS, saveDataInLS } from '../../utils/local-storage';
 
 function Movies({ savedMovies }) {
-  const [shouldMountMovies, setshouldMountMovies] = useState(false);
+  const [shouldMountMovies, setShouldMountMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [beatfilmMovies, setBeatfilmMovies] = useState([]);
+  const [filtredMovies, setFiltredMovies] = useState([]);
 
   const [isFilterActive, setFilterState] = useState(false);
 
+  const {
+    values: searchValue,
+    setValues: setSearchValue,
+    handleInputChange,
+  } = useInput({
+    search: '',
+  });
+
   const handleFilterClick = () => {
-    setFilterState(!isFilterActive);
+    const filterState = !isFilterActive;
+    setFilterState(filterState);
+    saveDataInLS({ isFilterActive: filterState });
+
+    if (beatfilmMovies) {
+      setIsLoading(true);
+
+      const { search } = getDataFromLS('search');
+      const filtredMovies = filterMovies(beatfilmMovies, search, filterState);
+      setFiltredMovies(filtredMovies);
+
+      setIsLoading(false);
+    }
   };
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    await getMoviesFromBeatfilm();
-  }
-
-  async function getMoviesFromBeatfilm() {
+  async function handleSearch() {
     setIsLoading(true);
-    try {
-      setshouldMountMovies(true);
+    if (!shouldMountMovies) setShouldMountMovies(true);
 
+    try {
+      let movies;
       if (!beatfilmMovies.length) {
-        const movies = await moviesApi.getMovies();
-        localStorage.setItem('beatfilmMovies', JSON.stringify(movies));
+        movies = await moviesApi.getMovies();
+        saveDataInLS({ beatfilmMovies: JSON.stringify(movies) });
         setBeatfilmMovies(movies);
+      } else {
+        movies = beatfilmMovies;
       }
+
+      const filtedMovies = filterMovies(
+        movies,
+        searchValue.search,
+        isFilterActive
+      );
+
+      setFiltredMovies(filtedMovies);
     } catch (err) {
       console.log(err);
     } finally {
@@ -42,15 +72,42 @@ function Movies({ savedMovies }) {
     }
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await handleSearch();
+    saveDataInLS({ isFilterActive, search: searchValue.search });
+  }
+
   useEffect(() => {
     const movies = localStorage.getItem('beatfilmMovies');
     if (movies) {
       setIsLoading(true);
-      setshouldMountMovies(true);
-      setBeatfilmMovies(JSON.parse(movies));
-      setIsLoading(false);
+      setShouldMountMovies(true);
+
+      try {
+        const { isFilterActive, search } = getDataFromLS(
+          'isFilterActive',
+          'search'
+        );
+
+        const booleanFilter = isFilterActive === 'true';
+        setFilterState(booleanFilter);
+        setSearchValue({ search });
+
+        const parsedMovies = JSON.parse(movies);
+        setBeatfilmMovies(parsedMovies);
+
+        const filtredMovies = filterMovies(parsedMovies, search, booleanFilter);
+        setFiltredMovies(filtredMovies);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
-  }, [isLoading]);
+  }, [setSearchValue]);
+
+  const isMoreBtnVisible = shouldMountMovies && filtredMovies.length > 3;
 
   return (
     <SectionWithMovies>
@@ -58,19 +115,21 @@ function Movies({ savedMovies }) {
         onSubmit={handleSubmit}
         isFilterActive={isFilterActive}
         onFilterClick={handleFilterClick}
+        searchValue={searchValue.search}
+        onChange={handleInputChange}
       />
       {shouldMountMovies &&
         (isLoading ? (
           <Preloader />
-        ) : !beatfilmMovies?.length ? (
+        ) : !filtredMovies?.length ? (
           <p className='movies__not-found-text'>Ничего не найдено :(</p>
         ) : (
           <MoviesCardList
-            movies={beatfilmMovies}
+            movies={filtredMovies}
             savedMovies={savedMovies}
           />
         ))}
-      {shouldMountMovies && beatfilmMovies.length > 3 && <MoreBtn />}
+      {isMoreBtnVisible && <MoreBtn />}
     </SectionWithMovies>
   );
 }

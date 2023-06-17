@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import './SearchForm.css';
 
 function SearchForm({
@@ -20,6 +18,8 @@ function SearchForm({
           type='text'
           placeholder='Фильм'
           className='search__input'
+          value={searchValue}
+          onChange={onChange}
         />
         <button
           type='submit'

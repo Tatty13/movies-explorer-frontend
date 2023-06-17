@@ -10,23 +10,29 @@ import {
   Profile,
   Register,
 } from './pages';
-import { Footer, Header, ProtectedRoute } from './components';
+import { Footer, Header, Preloader, ProtectedRoute } from './components';
 import { savedMovies } from './utils/movies-data';
 
 import { mainApi } from './utils/api';
 import { CurrentUserContext } from './contexts';
 
 function App() {
+  const [isPageLoading, setIsPageLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: '',
     email: '',
   });
 
+  if (isPageLoading) {
+    return <Preloader fullscreen={true} />;
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} />
         <main className='content'>
           <Routes>
             <Route
@@ -35,11 +41,11 @@ function App() {
             />
             <Route
               path='/signin'
-              element={<Login />}
+              element={<Login isLoading={isLoading} />}
             />
             <Route
               path='/signup'
-              element={<Register />}
+              element={<Register isLoading={isLoading} />}
             />
             <Route
               path='/movies'

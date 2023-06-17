@@ -5,10 +5,6 @@ import { convertMinsToHhMm } from '../../utils/convertMinsToHhMm';
 import { Link } from 'react-router-dom';
 
 function MoviesCard({ nameRU, duration, image, trailerLink, isSaved }) {
-  /**
-   * todo - удалить на этапе 3
-   */
-
   const { pathname } = useLocation();
 
   return (

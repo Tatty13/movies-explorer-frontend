@@ -1,5 +1,5 @@
 import './Register.css';
-import { AuthPage } from '../../components';
+import { AuthPage, FormBlockWithInput } from '../../components';
 import { useInput, useValidation } from '../../hooks';
 
 function Register({ onSignup, isLoading }) {
@@ -29,60 +29,45 @@ function Register({ onSignup, isLoading }) {
       isLoading={isLoading}
       isFormValid={isFormValid}
       onSubmit={handleSubmit}>
-      <label className='form__block form__block_mode_column'>
-        <span className='form__block-name'>Имя</span>
-        <input
-          className={`form__input form__input_mode_column ${
-            !isInputsValid.name && 'form__input_invalid'
-          }`}
-          type='text'
-          name='name'
-          placeholder='Введите имя'
-          minLength='2'
-          maxLength='30'
-          value={singupData.name}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <span className='form__input-error form__input-error_mode_column'>
-        {errorMessages.name}
-      </span>
-      <label className='form__block form__block_mode_column'>
-        <span className='form__block-name'>E-mail</span>
-        <input
-          className={`form__input form__input_mode_column ${
-            !isInputsValid.email && 'form__input_invalid'
-          }`}
-          type='email'
-          name='email'
-          placeholder='Введите Email'
-          value={singupData.email}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <span className='form__input-error form__input-error_mode_column'>
-        {errorMessages.email}
-      </span>
-      <label className='form__block form__block_mode_column'>
-        <span className='form__block-name'>Пароль</span>
-        <input
-          className={`form__input form__input_mode_column ${
-            !isInputsValid.password && 'form__input_invalid'
-          }`}
-          type='password'
-          name='password'
-          minLength={6}
-          placeholder='Введите пароль'
-          value={singupData.password}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <span className='form__input-error form__input-error_mode_column'>
-        {errorMessages.password}
-      </span>
+      <FormBlockWithInput
+        mode='column'
+        blockName='Имя'
+        errorMessage={errorMessages.name}
+        type='text'
+        name='name'
+        placeholder='Введите имя'
+        minLength='2'
+        maxLength='30'
+        value={singupData.name}
+        onChange={handleChange}
+        isValid={isInputsValid.name}
+        required
+      />
+      <FormBlockWithInput
+        mode='column'
+        blockName='E-mail'
+        errorMessage={errorMessages.email}
+        type='email'
+        name='email'
+        placeholder='Введите Email'
+        value={singupData.email}
+        onChange={handleChange}
+        isValid={isInputsValid.email}
+        required
+      />
+      <FormBlockWithInput
+        mode='column'
+        blockName='Пароль'
+        errorMessage={errorMessages.password}
+        type='password'
+        name='password'
+        minLength={6}
+        placeholder='Введите пароль'
+        value={singupData.password}
+        onChange={handleChange}
+        isValid={isInputsValid.password}
+        required
+      />
     </AuthPage>
   );
 }

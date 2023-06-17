@@ -4,7 +4,7 @@ function Input({ mode, type, name, placeholder, isValid, ...restProps }) {
   return (
     <input
       className={`form__input form__input_mode_${mode} ${
-        !isValid && 'form__input_invalid'
+        isValid === false && 'form__input_invalid'
       }`}
       type={type || 'text'}
       name={name || ''}

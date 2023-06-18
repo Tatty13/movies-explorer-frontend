@@ -38,14 +38,25 @@ function App() {
   }, []);
 
   /**
+   * @param {import('./utils/types/user').LoginData} loginData
+   */
+  async function login(loginData) {
+    const { user } = await mainApi.login(loginData);
+    localStorage.setItem('loggedIn', 'true');
+    setIsLoggedIn(true);
+    setCurrentUser(user);
+    setIsPageLoading(true);
+    navigate('/movies', { replace: true });
+  }
+
+  /**
    * @param {import('./utils/types/user').SignupData} signupData - object with 'name', 'email' and 'password'
    */
   async function handleSignUp(signupData) {
     setIsLoading(true);
-
     try {
-      const { user } = await mainApi.createUser(signupData);
-      console.log(user);
+      await mainApi.createUser(signupData);
+      await login({ email: signupData.email, password: signupData.password });
     } catch (err) {
       setFormMessage(err);
     } finally {
@@ -53,21 +64,15 @@ function App() {
     }
   }
 
+  //email: 'test1@test.ru', name: 'test1', pass: 123456'
+
   /**
    * @param {import('./utils/types/user').LoginData} signinData
    */
   async function handleSignIn(signinData) {
     setIsLoading(true);
-
     try {
-      await mainApi.login(signinData);
-      localStorage.setItem('loggedIn', 'true');
-      setIsLoggedIn(true);
-
-      setCurrentUser({ name: 'TEST', email: signinData.email });
-
-      setIsPageLoading(true);
-      navigate('/', { replace: true });
+      await login(signinData);
     } catch (err) {
       setFormMessage(err);
     } finally {

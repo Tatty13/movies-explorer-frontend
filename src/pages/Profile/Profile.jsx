@@ -6,13 +6,23 @@ import { CurrentUserContext } from '../../contexts';
 import { Form, FormBlockWithInput } from '../../components';
 import { useInput, useValidation } from '../../hooks';
 
-function Profile({ onUpdateUser, isLoading }) {
+function Profile({
+  onUpdateUser,
+  isLoading,
+  formMessage,
+  resetFormMessage,
+  formMessageType,
+}) {
   const { name, email } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const [isEditMode, setEditModeState] = useState(false);
   const [isSubmitForbidden, setIsSubmitForbidden] = useState(true);
 
-  const { values: userData, handleInputChange } = useInput({
+  const {
+    values: userData,
+    setValues: setUserData,
+    handleInputChange,
+  } = useInput({
     name,
     email,
   });
@@ -21,6 +31,7 @@ function Profile({ onUpdateUser, isLoading }) {
     useValidation();
 
   const handleChange = (evt) => {
+    if (formMessage) resetFormMessage();
     handleInputChange(evt);
     handleValidityChange(evt);
   };
@@ -31,17 +42,26 @@ function Profile({ onUpdateUser, isLoading }) {
 
   const handleInfoEdit = () => {
     setEditModeState(true);
+    resetFormMessage();
   };
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    // await onUpdateUser();
-    setEditModeState(false);
+    await onUpdateUser(userData);
   };
 
   useEffect(() => {
     setIsSubmitForbidden(name === userData.name && email === userData.email);
   }, [name, email, userData.name, userData.email]);
+
+  useEffect(() => {
+    setUserData({ name, email });
+    setEditModeState(false);
+  }, [name, email, setUserData]);
+
+  useEffect(() => {
+    resetFormMessage();
+  }, [resetFormMessage]);
 
   return (
     <section className={`container section profile`}>
@@ -50,6 +70,8 @@ function Profile({ onUpdateUser, isLoading }) {
         name='profile'
         onSubmit={handleSubmit}
         isLoading={isLoading}
+        formMessage={formMessage}
+        formMessageType={formMessageType}
         isFormValid={isFormValid}
         isSubmitForbidden={isSubmitForbidden}
         isEditMode={isEditMode}>

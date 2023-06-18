@@ -4,6 +4,8 @@ function Form({
   name,
   btnText,
   loadingText,
+  formMessage,
+  formMessageType = 'error',
   isLoading,
   onSubmit,
   isEditMode = true,
@@ -21,15 +23,20 @@ function Form({
       name={name}
       noValidate>
       {children}
-      <button
-        className={`btn form__submit-btn ${
-          !isEditMode && 'form__submit-btn_invisible'
-        } ${isSubminBtnDisabled && 'form__submit-btn_disabled'}`}
-        type='submit'
-        name='submit-btn'
-        disabled={isSubminBtnDisabled}>
-        {isLoading ? loadingText || 'Сохранение...' : btnText || 'Сохранить'}
-      </button>
+      <div className='form__submit-wrap'>
+        <span className={`form__mesasge form__mesasge_type_${formMessageType}`}>
+          {formMessage}
+        </span>
+        <button
+          className={`btn form__submit-btn ${
+            !isEditMode && 'form__submit-btn_invisible'
+          } ${isSubminBtnDisabled && 'form__submit-btn_disabled'}`}
+          type='submit'
+          name='submit-btn'
+          disabled={isSubminBtnDisabled}>
+          {isLoading ? loadingText || 'Сохранение...' : btnText || 'Сохранить'}
+        </button>
+      </div>
     </form>
   );
 }

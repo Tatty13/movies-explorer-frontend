@@ -8,6 +8,7 @@ function AuthPage({
   pageName,
   btnText,
   loadingText,
+  formMessage,
   isLoading,
   isFormValid,
   onSubmit,
@@ -23,6 +24,7 @@ function AuthPage({
         isLoading={isLoading}
         loadingText={loadingText || 'Загрузка...'}
         btnText={btnText}
+        formMessage={formMessage}
         isFormValid={isFormValid}
         onSubmit={onSubmit}>
         {children}

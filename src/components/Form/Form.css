@@ -3,9 +3,32 @@
   flex-direction: column;
 }
 
-.form__submit-btn {
+.form__submit-wrap {
   margin-top: auto;
   margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.form__mesasge {
+  font-size: var(--text-xxxs);
+  line-height: 1.18;
+  text-align: center;
+  transition: var(--transition-duration-main);
+}
+
+.form__mesasge_type_error {
+  color: var(--color-text-error);
+}
+
+.form__mesasge_type_success {
+  color: var(--color-brand-secondary);
+}
+
+.form__submit-btn {
+  width: 100%;
   height: 45px;
   font-size: var(--text-s);
   font-weight: var(--text-weight-m);

@@ -5,7 +5,13 @@ import './Register.css';
 import { AuthPage, FormBlockWithInput } from '../../components';
 import { useInput, useValidation } from '../../hooks';
 
-function Register({ onSignup, isLoading, isLoggedIn }) {
+function Register({
+  onSignup,
+  isLoading,
+  isLoggedIn,
+  formMessage,
+  resetFormMessage,
+}) {
   const navigate = useNavigate();
 
   const { values: singupData, handleInputChange } = useInput({
@@ -18,6 +24,7 @@ function Register({ onSignup, isLoading, isLoggedIn }) {
     useValidation();
 
   function handleChange(evt) {
+    if (formMessage) resetFormMessage();
     handleInputChange(evt);
     handleValidityChange(evt);
   }
@@ -31,11 +38,16 @@ function Register({ onSignup, isLoading, isLoggedIn }) {
     isLoggedIn && navigate('/', { replace: true });
   }, [isLoggedIn, navigate]);
 
+  useEffect(() => {
+    resetFormMessage();
+  }, [resetFormMessage]);
+
   return (
     <AuthPage
       title='Добро пожаловать!'
       pageName='register'
       btnText='Зарегистрироваться'
+      formMessage={formMessage}
       isLoading={isLoading}
       isFormValid={isFormValid}
       onSubmit={handleSubmit}>

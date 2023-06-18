@@ -5,7 +5,13 @@ import './Login.css';
 import { AuthPage, FormBlockWithInput } from '../../components/';
 import { useInput, useValidation } from '../../hooks';
 
-function Login({ onSignin, isLoading, isLoggedIn }) {
+function Login({
+  onSignin,
+  isLoading,
+  isLoggedIn,
+  formMessage,
+  resetFormMessage,
+}) {
   const navigate = useNavigate();
   const { values: loginData, handleInputChange } = useInput({
     email: '',
@@ -16,6 +22,7 @@ function Login({ onSignin, isLoading, isLoggedIn }) {
     useValidation();
 
   function handleChange(evt) {
+    if (formMessage) resetFormMessage();
     handleInputChange(evt);
     handleValidityChange(evt);
   }
@@ -29,11 +36,16 @@ function Login({ onSignin, isLoading, isLoggedIn }) {
     isLoggedIn && navigate('/', { replace: true });
   }, [isLoggedIn, navigate]);
 
+  useEffect(() => {
+    resetFormMessage();
+  }, [resetFormMessage]);
+
   return (
     <AuthPage
       title='Рады видеть!'
       pageName='login'
       btnText='Войти'
+      formMessage={formMessage}
       isLoading={isLoading}
       isFormValid={isFormValid}
       onSubmit={handleSubmit}>

@@ -51,8 +51,11 @@ function Profile({
   };
 
   useEffect(() => {
-    setIsSubmitForbidden(name === userData.name && email === userData.email);
-  }, [name, email, userData.name, userData.email]);
+    const isRequestWithError = formMessage && formMessageType === 'error';
+    const isUserDataTheSame =
+      name === userData.name && email === userData.email;
+    setIsSubmitForbidden(isRequestWithError || isUserDataTheSame);
+  }, [name, email, userData.name, userData.email, formMessage, formMessageType]);
 
   useEffect(() => {
     setUserData({ name, email });

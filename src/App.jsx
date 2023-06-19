@@ -24,7 +24,7 @@ function App() {
     email: '',
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isPageLoading, setIsPageLoading] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const [formMessage, setFormMessage] = useState('');
@@ -82,8 +82,8 @@ function App() {
     setIsPageLoading(true);
     try {
       await mainApi.logout();
-      localStorage.removeItem('loggedIn');
       setIsLoggedIn(false);
+      localStorage.clear();
       navigate('/', { replace: true });
     } catch (err) {
       console.log(err);
@@ -92,7 +92,6 @@ function App() {
 
   async function handleUserUpdate(userdata) {
     setIsLoading(true);
-
     try {
       const user = await mainApi.updateUser(userdata);
       setCurrentUser(user);
@@ -106,15 +105,27 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    try {
-      isLoggedIn && console.log('loggedin');
-    } catch (err) {
-      console.log(err);
-    } finally {
+  const handleTokenCheck = useCallback(async () => {
+    if (localStorage.getItem('loggedIn')) {
+      try {
+        const user = await mainApi.getUser();
+        setCurrentUser(user);
+        setIsLoggedIn(true);
+      } catch (err) {
+        localStorage.clear();
+        navigate('/', { replace: true });
+        console.log(err);
+      } finally {
+        setIsPageLoading(false);
+      }
+    } else {
       setIsPageLoading(false);
     }
-  }, [isLoggedIn]);
+  }, [navigate]);
+
+  useEffect(() => {
+    handleTokenCheck();
+  }, [handleTokenCheck]);
 
   if (isPageLoading) {
     return <Preloader fullscreen={true} />;

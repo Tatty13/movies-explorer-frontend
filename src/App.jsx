@@ -64,8 +64,6 @@ function App() {
     }
   }
 
-  //email: 'test1@test.ru', name: 'test1', pass: 123456'
-
   /**
    * @param {import('./utils/types/user').LoginData} signinData
    */
@@ -77,6 +75,18 @@ function App() {
       setFormMessage(err);
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  async function handleSignout() {
+    setIsPageLoading(true);
+    try {
+      await mainApi.logout();
+      localStorage.removeItem('loggedIn');
+      setIsLoggedIn(false);
+      navigate('/', { replace: true });
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -170,6 +180,7 @@ function App() {
                 <ProtectedRoute
                   component={Profile}
                   onUpdateUser={handleUserUpdate}
+                  onSignOut={handleSignout}
                   isLoggedIn={isLoggedIn}
                   isLoading={isLoading}
                   user={currentUser}

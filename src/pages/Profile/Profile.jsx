@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts';
@@ -8,13 +7,13 @@ import { useInput, useValidation } from '../../hooks';
 
 function Profile({
   onUpdateUser,
+  onSignOut,
   isLoading,
   formMessage,
   resetFormMessage,
   formMessageType,
 }) {
   const { name, email } = useContext(CurrentUserContext);
-  const navigate = useNavigate();
   const [isEditMode, setEditModeState] = useState(false);
   const [isSubmitForbidden, setIsSubmitForbidden] = useState(true);
 
@@ -36,10 +35,6 @@ function Profile({
     handleValidityChange(evt);
   };
 
-  const handleSignout = () => {
-    navigate('/', { replace: true });
-  };
-
   const handleInfoEdit = () => {
     setEditModeState(true);
     resetFormMessage();
@@ -55,7 +50,14 @@ function Profile({
     const isUserDataTheSame =
       name === userData.name && email === userData.email;
     setIsSubmitForbidden(isRequestWithError || isUserDataTheSame);
-  }, [name, email, userData.name, userData.email, formMessage, formMessageType]);
+  }, [
+    name,
+    email,
+    userData.name,
+    userData.email,
+    formMessage,
+    formMessageType,
+  ]);
 
   useEffect(() => {
     setUserData({ name, email });
@@ -117,7 +119,7 @@ function Profile({
             Редактировать
           </button>
           <button
-            onClick={handleSignout}
+            onClick={onSignOut}
             type='button'
             className='btn controls__btn controls__btn_theme_important hover-effect hover-effect_type_opacity-60
             '>

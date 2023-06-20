@@ -10,12 +10,15 @@ import {
 import { moviesApi } from '../../utils/api';
 import { useInput } from '../../hooks';
 import { filterMovies, getDataFromLS, saveDataInLS } from '../../utils/helpers';
+import { MOVIE_MESSAGES } from '../../utils/constants';
 
 function Movies({ savedMovies }) {
   const [shouldMountMovies, setShouldMountMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [beatfilmMovies, setBeatfilmMovies] = useState([]);
   const [filtredMovies, setFiltredMovies] = useState([]);
+
+  const [infoText, setInfoText] = useState(MOVIE_MESSAGES.notFound);
 
   const [isFilterActive, setFilterState] = useState(false);
 
@@ -65,7 +68,7 @@ function Movies({ savedMovies }) {
 
       setFiltredMovies(filtedMovies);
     } catch (err) {
-      console.log(err);
+      setInfoText(MOVIE_MESSAGES.error);
     } finally {
       setIsLoading(false);
     }
@@ -99,7 +102,7 @@ function Movies({ savedMovies }) {
         const filtredMovies = filterMovies(parsedMovies, search, booleanFilter);
         setFiltredMovies(filtredMovies);
       } catch (err) {
-        console.log(err);
+        setInfoText(MOVIE_MESSAGES.error);
       } finally {
         setIsLoading(false);
       }
@@ -122,7 +125,7 @@ function Movies({ savedMovies }) {
         (isLoading ? (
           <Preloader />
         ) : !filtredMovies?.length ? (
-          <p className='movies__not-found-text'>Ничего не найдено :(</p>
+          <p className='movies__info-text'>{infoText}</p>
         ) : (
           <MoviesCardList
             movies={filtredMovies}

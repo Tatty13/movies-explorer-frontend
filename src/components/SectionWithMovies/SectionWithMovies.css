@@ -4,12 +4,14 @@
   padding-bottom: 80px;
 }
 
-.movies__not-found-text {
+.movies__info-text {
   margin: 70px 0 0;
+  max-width: 70%;
   align-self: center;
   font-size: var(--text-l);
   line-height: var(--text-line-s);
   color: var(--color-text-secondary);
+  text-align: center;
 }
 
 @media screen and (max-width: 920px) {
@@ -18,7 +20,7 @@
     padding-right: var(--app-side-padding-tab-s);
   }
 
-  .movies__not-found-text {
+  .movies__info-text {
     font-size: var(--text-s);
   }
 }
@@ -27,5 +29,9 @@
   .movies {
     padding-left: var(--app-side-padding-mobile-xs);
     padding-right: var(--app-side-padding-mobile-xs);
+  }
+
+  .movies__info-text {
+    max-width: 90%;
   }
 }

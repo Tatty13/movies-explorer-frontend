@@ -19,3 +19,6 @@ export * from './FormBlockWithInput/FormBlockWithInput';
 export * from './AuthPage/AuthPage';
 export * from './Preloader/Preloader';
 export * from './ProtectedRoute/ProtectedRoute';
+
+export * from './Popup/Popup';
+export * from './InfoTooltip/InfoTooltip';

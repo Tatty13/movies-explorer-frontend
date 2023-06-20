@@ -8,6 +8,7 @@ import {
 } from '../../components';
 import { useInput } from '../../hooks';
 import { filterMovies, getDataFromLS, saveDataInLS } from '../../utils/helpers';
+import { MOVIE_MESSAGES } from '../../utils/constants';
 
 function SavedMovies({ movies }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -66,6 +67,8 @@ function SavedMovies({ movies }) {
       'savedMoviesSearch'
     );
 
+    if (!savedMoviesSearch) saveDataInLS({ savedMoviesSearch: '' });
+
     const booleanFilter = isSavedMoviesFilterActive === 'true';
     const search = savedMoviesSearch || '';
     setFilterState(booleanFilter);
@@ -89,8 +92,8 @@ function SavedMovies({ movies }) {
 
       {isLoading ? (
         <Preloader />
-      ) : !movies?.length ? (
-        <p className='movies__not-found-text'>Ничего не найдено :(</p>
+      ) : !filtredMovies?.length ? (
+        <p className='movies__info-text'>{MOVIE_MESSAGES.notFound}</p>
       ) : (
         <MoviesCardList movies={filtredMovies} />
       )}

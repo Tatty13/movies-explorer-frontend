@@ -7,8 +7,7 @@ import {
   SectionWithMovies,
 } from '../../components';
 import { useInput } from '../../hooks';
-import { getDataFromLS, saveDataInLS } from '../../utils/local-storage';
-import { filterMovies } from '../../utils/filterMovies';
+import { filterMovies, getDataFromLS, saveDataInLS } from '../../utils/helpers';
 
 function SavedMovies({ movies }) {
   const [isLoading, setIsLoading] = useState(false);

@@ -9,8 +9,7 @@ import {
 } from '../../components';
 import { moviesApi } from '../../utils/api';
 import { useInput } from '../../hooks';
-import { filterMovies } from '../../utils/filterMovies';
-import { getDataFromLS, saveDataInLS } from '../../utils/local-storage';
+import { filterMovies, getDataFromLS, saveDataInLS } from '../../utils/helpers';
 
 function Movies({ savedMovies }) {
   const [shouldMountMovies, setShouldMountMovies] = useState(false);

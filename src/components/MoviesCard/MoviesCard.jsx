@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
 import './MoviesCard.css';
-import { convertMinsToHhMm } from '../../utils/convertMinsToHhMm';
+import { convertMinsToHhMm } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 
 function MoviesCard({ nameRU, duration, image, trailerLink, isSaved }) {

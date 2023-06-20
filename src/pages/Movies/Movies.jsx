@@ -113,6 +113,7 @@ function Movies({ savedMovies }) {
     <SectionWithMovies>
       <SearchForm
         onSubmit={handleSubmit}
+        isLoading={isLoading}
         isFilterActive={isFilterActive}
         onFilterClick={handleFilterClick}
         searchValue={searchValue.search}

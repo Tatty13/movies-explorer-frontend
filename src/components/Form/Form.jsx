@@ -13,7 +13,7 @@ function Form({
   isSubmitForbidden = false,
   children,
 }) {
-  const isSubminBtnDisabled = !isFormValid || isSubmitForbidden;
+  const isSubminBtnDisabled = !isFormValid || isSubmitForbidden || isLoading;
 
   return (
     <form

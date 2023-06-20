@@ -10,7 +10,13 @@ import {
   Profile,
   Register,
 } from './pages';
-import { Footer, Header, Preloader, ProtectedRoute } from './components';
+import {
+  Footer,
+  Header,
+  InfoTooltip,
+  Preloader,
+  ProtectedRoute,
+} from './components';
 import { savedMovies } from './utils/movies-data';
 
 import { mainApi } from './utils/api';
@@ -29,6 +35,8 @@ function App() {
 
   const [formMessage, setFormMessage] = useState('');
   const [formMessageType, setFormMessageType] = useState('error');
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+  const [tooltipMessage, setTooltipMessage] = useState('');
 
   /**
    * set empty string as a formMessage value
@@ -36,6 +44,21 @@ function App() {
   const resetFormMessage = useCallback(() => {
     setFormMessage('');
   }, []);
+
+  const closePopup = useCallback(() => {
+    setIsTooltipOpen(false);
+  }, []);
+
+  const handleError = useCallback(
+    /**
+     * @param {string} errMessage - error message
+     */
+    (errMessage) => {
+      setTooltipMessage(errMessage);
+      setIsTooltipOpen(true);
+    },
+    []
+  );
 
   /**
    * @param {import('./utils/types/user').LoginData} loginData
@@ -86,7 +109,7 @@ function App() {
       localStorage.clear();
       navigate('/', { replace: true });
     } catch (err) {
-      console.log(err);
+      handleError(err);
     }
   }
 
@@ -114,14 +137,14 @@ function App() {
       } catch (err) {
         localStorage.clear();
         navigate('/', { replace: true });
-        console.log(err);
+        handleError(err);
       } finally {
         setIsPageLoading(false);
       }
     } else {
       setIsPageLoading(false);
     }
-  }, [navigate]);
+  }, [navigate, handleError]);
 
   useEffect(() => {
     handleTokenCheck();
@@ -209,6 +232,11 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <InfoTooltip
+          isOpen={isTooltipOpen}
+          info={tooltipMessage}
+          onClose={closePopup}
+        />
       </>
     </CurrentUserContext.Provider>
   );

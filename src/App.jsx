@@ -17,7 +17,6 @@ import {
   Preloader,
   ProtectedRoute,
 } from './components';
-import { savedMovies } from './utils/movies-data';
 
 import { mainApi } from './utils/api';
 import { CurrentUserContext } from './contexts';
@@ -37,6 +36,8 @@ function App() {
   const [formMessageType, setFormMessageType] = useState('error');
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const [tooltipMessage, setTooltipMessage] = useState('');
+
+  const [savedMovies, setSavedMovies] = useState([]);
 
   /**
    * set empty string as a formMessage value
@@ -59,6 +60,55 @@ function App() {
     },
     []
   );
+
+  const getSavedMovies = useCallback(async () => {
+    setIsPageLoading(true);
+    try {
+      const movies = await mainApi.getMovies();
+      setSavedMovies(movies);
+    } catch (err) {
+      handleError(err);
+    } finally {
+      setIsPageLoading(false);
+    }
+  }, [handleError]);
+
+  /**
+   * @param {import('./utils/types/movie').MovieDataToSave} movieData
+   * image, trailerLink, thumbnail - should be url;
+   * duration is time in minutes; movieId is id from beatfilm
+   */
+  async function saveMovie(movieData) {
+    try {
+      const movie = await mainApi.addMovie(movieData);
+      setSavedMovies((currMovies) => [...currMovies, movie]);
+    } catch (err) {
+      handleError(err);
+    }
+  }
+
+  /**
+   * @param {string} movieId - hex id
+   */
+  async function deleteMovie(movieId) {
+    try {
+      await mainApi.deleteMovie(movieId);
+      setSavedMovies((currMovies) =>
+        currMovies.filter((movie) => movie._id !== movieId)
+      );
+    } catch (err) {
+      handleError(err);
+    }
+  }
+
+  async function deleteMovieByBeatfilmId(beatfilmId) {
+    try {
+      const { _id } = savedMovies.find((movie) => movie.movieId === beatfilmId);
+      await deleteMovie(_id);
+    } catch (err) {
+      handleError(err);
+    }
+  }
 
   /**
    * @param {import('./utils/types/user').LoginData} loginData
@@ -150,6 +200,10 @@ function App() {
     handleTokenCheck();
   }, [handleTokenCheck]);
 
+  useEffect(() => {
+    isLoggedIn && getSavedMovies();
+  }, [isLoggedIn, getSavedMovies]);
+
   if (isPageLoading) {
     return <Preloader fullscreen={true} />;
   }
@@ -195,6 +249,8 @@ function App() {
                   component={Movies}
                   isLoggedIn={isLoggedIn}
                   savedMovies={savedMovies}
+                  onSave={saveMovie}
+                  onDelete={deleteMovieByBeatfilmId}
                 />
               }
             />
@@ -205,6 +261,7 @@ function App() {
                   component={SavedMovies}
                   isLoggedIn={isLoggedIn}
                   movies={savedMovies}
+                  onDelete={deleteMovie}
                 />
               }
             />

@@ -10,7 +10,7 @@ import { useInput } from '../../hooks';
 import { filterMovies, getDataFromLS, saveDataInLS } from '../../utils/helpers';
 import { MOVIE_MESSAGES } from '../../utils/constants';
 
-function SavedMovies({ movies }) {
+function SavedMovies({ movies, onDelete }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSavedMoviesFilterActive, setFilterState] = useState(false);
   const [filtredMovies, setFiltredMovies] = useState([]);
@@ -95,7 +95,11 @@ function SavedMovies({ movies }) {
       ) : !filtredMovies?.length ? (
         <p className='movies__info-text'>{MOVIE_MESSAGES.notFound}</p>
       ) : (
-        <MoviesCardList movies={filtredMovies} />
+        <MoviesCardList
+          movies={filtredMovies}
+          hasDeleteBtn={true}
+          onDelete={onDelete}
+        />
       )}
     </SectionWithMovies>
   );

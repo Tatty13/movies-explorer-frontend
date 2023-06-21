@@ -12,7 +12,7 @@ import { useInput } from '../../hooks';
 import { filterMovies, getDataFromLS, saveDataInLS } from '../../utils/helpers';
 import { MOVIE_MESSAGES } from '../../utils/constants';
 
-function Movies({ savedMovies }) {
+function Movies({ savedMovies, onSave, onDelete }) {
   const [shouldMountMovies, setShouldMountMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [beatfilmMovies, setBeatfilmMovies] = useState([]);
@@ -130,6 +130,9 @@ function Movies({ savedMovies }) {
           <MoviesCardList
             movies={filtredMovies}
             savedMovies={savedMovies}
+            hasDeleteBtn={false}
+            onDelete={onDelete}
+            onSave={onSave}
           />
         ))}
       {isMoreBtnVisible && <MoreBtn />}

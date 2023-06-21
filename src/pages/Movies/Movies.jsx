@@ -9,18 +9,32 @@ import {
 } from '../../components';
 import { moviesApi } from '../../utils/api';
 import { useInput } from '../../hooks';
-import { filterMovies, getDataFromLS, saveDataInLS } from '../../utils/helpers';
-import { MOVIE_MESSAGES } from '../../utils/constants';
+import {
+  filterMovies,
+  getWindowWidthType,
+  getDataFromLS,
+  saveDataInLS,
+} from '../../utils/helpers';
+import {
+  INITIAL_CARDS_COUNT,
+  MORE_CARDS_COUNT,
+  MOVIE_MESSAGES,
+} from '../../utils/constants';
 
 function Movies({ savedMovies, onSave, onDelete }) {
   const [shouldMountMovies, setShouldMountMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isFilterActive, setFilterState] = useState(false);
+
   const [beatfilmMovies, setBeatfilmMovies] = useState([]);
   const [filtredMovies, setFiltredMovies] = useState([]);
+  const [moviesToShow, setMoviesToShow] = useState([]);
 
   const [infoText, setInfoText] = useState(MOVIE_MESSAGES.notFound);
 
-  const [isFilterActive, setFilterState] = useState(false);
+  const [windowWidthType, setWindowWidthType] = useState(
+    getWindowWidthType(window.innerWidth)
+  );
 
   const {
     values: searchValue,
@@ -41,6 +55,9 @@ function Movies({ savedMovies, onSave, onDelete }) {
       const { search } = getDataFromLS('search');
       const filtredMovies = filterMovies(beatfilmMovies, search, filterState);
       setFiltredMovies(filtredMovies);
+      setMoviesToShow(
+        filtredMovies.slice(0, INITIAL_CARDS_COUNT[windowWidthType])
+      );
 
       setIsLoading(false);
     }
@@ -60,13 +77,16 @@ function Movies({ savedMovies, onSave, onDelete }) {
         movies = beatfilmMovies;
       }
 
-      const filtedMovies = filterMovies(
+      const filtredMovies = filterMovies(
         movies,
         searchValue.search,
         isFilterActive
       );
 
-      setFiltredMovies(filtedMovies);
+      setFiltredMovies(filtredMovies);
+      setMoviesToShow(
+        filtredMovies.slice(0, INITIAL_CARDS_COUNT[windowWidthType])
+      );
     } catch (err) {
       setInfoText(MOVIE_MESSAGES.error);
     } finally {
@@ -101,15 +121,43 @@ function Movies({ savedMovies, onSave, onDelete }) {
 
         const filtredMovies = filterMovies(parsedMovies, search, booleanFilter);
         setFiltredMovies(filtredMovies);
+        setMoviesToShow(
+          filtredMovies.slice(0, INITIAL_CARDS_COUNT[windowWidthType])
+        );
       } catch (err) {
         setInfoText(MOVIE_MESSAGES.error);
       } finally {
         setIsLoading(false);
       }
     }
-  }, [setSearchValue]);
+  }, [setSearchValue, windowWidthType]);
 
-  const isMoreBtnVisible = shouldMountMovies && filtredMovies.length > 3;
+  useEffect(() => {
+    const handleWindowWidthChange = () => {
+      const widthType = getWindowWidthType(window.innerWidth);
+      setWindowWidthType(widthType);
+    };
+
+    window.addEventListener('resize', handleWindowWidthChange);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowWidthChange);
+    };
+  }, []);
+
+  function handleMoreBtnClick() {
+    const currMoviesCount = moviesToShow.length;
+    const moreMovies = filtredMovies.slice(
+      currMoviesCount,
+      currMoviesCount + MORE_CARDS_COUNT[windowWidthType]
+    );
+    setMoviesToShow((currMovies) => [...currMovies, ...moreMovies]);
+  }
+
+  const isMoreBtnVisible =
+    shouldMountMovies &&
+    filtredMovies.length > 3 &&
+    moviesToShow.length < filtredMovies.length;
 
   return (
     <SectionWithMovies>
@@ -128,14 +176,14 @@ function Movies({ savedMovies, onSave, onDelete }) {
           <p className='movies__info-text'>{infoText}</p>
         ) : (
           <MoviesCardList
-            movies={filtredMovies}
+            movies={moviesToShow}
             savedMovies={savedMovies}
             hasDeleteBtn={false}
             onDelete={onDelete}
             onSave={onSave}
           />
         ))}
-      {isMoreBtnVisible && <MoreBtn />}
+      {isMoreBtnVisible && <MoreBtn onClick={handleMoreBtnClick} />}
     </SectionWithMovies>
   );
 }

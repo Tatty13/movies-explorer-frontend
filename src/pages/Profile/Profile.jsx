@@ -48,7 +48,7 @@ function Profile({
   useEffect(() => {
     const isRequestWithError = formMessage && formMessageType === 'error';
     const isUserDataTheSame =
-      name === userData.name && email === userData.email;
+      name === userData.name.trim() && email === userData.email.trim();
     setIsSubmitForbidden(isRequestWithError || isUserDataTheSame);
   }, [
     name,

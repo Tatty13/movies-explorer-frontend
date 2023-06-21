@@ -86,7 +86,7 @@ class MainApi extends Api {
   }
 
   /**
-   * @param {import('../types/movie').Movie} movieData
+   * @param {import('../types/movie').MovieDataToSave} movieData
    * image, trailerLink, thumbnail - should be url;
    * duration is time in minutes; movieId is id from beatfilm
    */

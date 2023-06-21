@@ -9,7 +9,7 @@ const isIncludeKeyWord = (words, keyWord) =>
   words.some((word) => word.toLowerCase().includes(keyWord.toLowerCase()));
 
 /**
- * @param {import('../types/movie').Movie[]} movies
+ * @param {import('../types/movie').Movie[] | import('../types/movie').SavedMovie[]} movies
  * @param {string} keyWord
  * @returns
  */
@@ -19,7 +19,7 @@ const filterMoviesByKeyWord = (movies, keyWord) =>
   );
 
 /**
- * @param {import('../types/movie').Movie[]} movies
+ * @param {import('../types/movie').Movie[] | import('../types/movie').SavedMovie[]} movies
  * @param {string} keyWord
  * @returns
  */
@@ -31,7 +31,7 @@ const filterShortFilmsByKeyWord = (movies, keyWord) =>
   );
 
 /**
- * @param {import('../types/movie').Movie[]} movies
+ * @param {import('../types/movie').Movie[] | import('../types/movie').SavedMovie[]} movies
  * @param {string} keyWord
  * @param {boolean} isOnlyShortFilm
  * @returns

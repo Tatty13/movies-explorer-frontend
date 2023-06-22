@@ -29,10 +29,13 @@ function App() {
     email: '',
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isPageLoading, setIsPageLoading] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true); //to show fullscreen preloader
+  const [isLoading, setIsLoading] = useState(false); //to change submit btn text and disable it
 
   const [formMessage, setFormMessage] = useState('');
+  /**
+   * todo - change to boolean value (isSubmitOk)
+   */
   const [formMessageType, setFormMessageType] = useState('error');
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const [tooltipMessage, setTooltipMessage] = useState('');
@@ -188,8 +191,6 @@ function App() {
         localStorage.clear();
         navigate('/', { replace: true });
         handleError(err);
-      } finally {
-        setIsPageLoading(false);
       }
     } else {
       setIsPageLoading(false);

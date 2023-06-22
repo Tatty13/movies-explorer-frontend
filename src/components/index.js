@@ -9,8 +9,16 @@ export * from './AboutProject/AboutProject';
 export * from './Techs/Techs';
 export * from './AboutMe/AboutMe';
 export * from './SearchForm/SearchForm';
+export * from './SectionWithMovies/SectionWithMovies';
 export * from './MoviesCardList/MoviesCardList';
 export * from './MoviesCard/MoviesCard';
+export * from './MoreBtn/MoreBtn';
 export * from './Form/Form';
+export * from './Input/Input';
+export * from './FormBlockWithInput/FormBlockWithInput';
 export * from './AuthPage/AuthPage';
 export * from './Preloader/Preloader';
+export * from './ProtectedRoute/ProtectedRoute';
+
+export * from './Popup/Popup';
+export * from './InfoTooltip/InfoTooltip';

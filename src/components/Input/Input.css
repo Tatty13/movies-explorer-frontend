@@ -1,0 +1,29 @@
+.form__input {
+  padding: 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+.form__input::placeholder {
+  font-size: 10px;
+  line-height: 1.11;
+  color: var(--color-text-secondary);
+}
+
+.form__input_mode_row {
+  line-height: inherit;
+  text-align: end;
+}
+
+.form__input_mode_column {
+  padding-bottom: 10px;
+  font-size: var(--text-s);
+  line-height: var(--text-line-m);
+}
+
+.form__input_invalid {
+  color: var(--color-text-error);
+}

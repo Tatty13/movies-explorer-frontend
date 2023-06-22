@@ -1,0 +1,18 @@
+.more-btn {
+  width: 100%;
+  height: 36px;
+  font-size: var(--text-xxs);
+  line-height: 1.25;
+  font-weight: var(--text-weight-m);
+  color: var(--color-text-primary);
+  background: var(--color-bg-more_btn);
+  border-radius: 6px;
+}
+
+.more-btn:hover {
+  box-shadow: 0 0 11px var(--color-black-rgba-30);
+}
+
+.more-btn:active {
+  opacity: 0.7;
+}

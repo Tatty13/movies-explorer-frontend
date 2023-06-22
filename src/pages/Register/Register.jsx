@@ -1,53 +1,95 @@
-import './Register.css';
-import { AuthPage } from '../../components';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Register() {
+import './Register.css';
+import { AuthPage, FormBlockWithInput } from '../../components';
+import { useInput, useValidation } from '../../hooks';
+
+function Register({
+  onSignup,
+  isLoading,
+  isLoggedIn,
+  formMessage,
+  resetFormMessage,
+}) {
+  const navigate = useNavigate();
+
+  const { values: singupData, handleInputChange } = useInput({
+    email: '',
+    password: '',
+    name: '',
+  });
+
+  const { errorMessages, isFormValid, isInputsValid, handleValidityChange } =
+    useValidation();
+
+  function handleChange(evt) {
+    if (formMessage) resetFormMessage();
+    handleInputChange(evt);
+    handleValidityChange(evt);
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onSignup(singupData);
+  }
+
+  useEffect(() => {
+    isLoggedIn && navigate('/', { replace: true });
+  }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    resetFormMessage();
+  }, [resetFormMessage]);
+
   return (
     <AuthPage
       title='Добро пожаловать!'
       pageName='register'
       btnText='Зарегистрироваться'
-      children>
-      <label className='form__block form__block_mode_column'>
-        <span className='form__block-name'>Имя</span>
-        <input
-          className={`form__input form__input_mode_column`}
-          type='text'
-          name='name'
-          placeholder='Введите имя'
-          minLength='2'
-          maxLength='30'
-          defaultValue='Виталий'
-          required
-        />
-      </label>
-      <span className='form__input-error form__input-error_mode_column'></span>
-      <label className='form__block form__block_mode_column'>
-        <span className='form__block-name'>E-mail</span>
-        <input
-          className={`form__input form__input_mode_column`}
-          type='email'
-          name='email'
-          placeholder='Введите Email'
-          defaultValue='pochta@yandex.ru'
-          required
-        />
-      </label>
-      <span className='form__input-error form__input-error_mode_column'></span>
-      <label className='form__block form__block_mode_column'>
-        <span className='form__block-name'>Пароль</span>
-        <input
-          className={`form__input form__input_mode_column form__input_invalid`}
-          type='password'
-          name='password'
-          placeholder='Введите пароль'
-          defaultValue='password123456'
-          required
-        />
-      </label>
-      <span className='form__input-error form__input-error_mode_column'>
-        Что-то пошло не так...
-      </span>
+      formMessage={formMessage}
+      isLoading={isLoading}
+      isFormValid={isFormValid}
+      onSubmit={handleSubmit}>
+      <FormBlockWithInput
+        mode='column'
+        blockName='Имя'
+        errorMessage={errorMessages.name}
+        type='text'
+        name='name'
+        placeholder='Введите имя'
+        minLength='2'
+        maxLength='30'
+        value={singupData.name}
+        onChange={handleChange}
+        isValid={isInputsValid.name}
+        required
+      />
+      <FormBlockWithInput
+        mode='column'
+        blockName='E-mail'
+        errorMessage={errorMessages.email}
+        type='email'
+        name='email'
+        placeholder='Введите Email'
+        value={singupData.email}
+        onChange={handleChange}
+        isValid={isInputsValid.email}
+        required
+      />
+      <FormBlockWithInput
+        mode='column'
+        blockName='Пароль'
+        errorMessage={errorMessages.password}
+        type='password'
+        name='password'
+        minLength={6}
+        placeholder='Введите пароль'
+        value={singupData.password}
+        onChange={handleChange}
+        isValid={isInputsValid.password}
+        required
+      />
     </AuthPage>
   );
 }

@@ -1,37 +1,78 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './Login.css';
+import { AuthPage, FormBlockWithInput } from '../../components/';
+import { useInput, useValidation } from '../../hooks';
 
-import { AuthPage } from '../../components/';
+function Login({
+  onSignin,
+  isLoading,
+  isLoggedIn,
+  formMessage,
+  resetFormMessage,
+}) {
+  const navigate = useNavigate();
+  const { values: loginData, handleInputChange } = useInput({
+    email: '',
+    password: '',
+  });
 
-function Login() {
+  const { errorMessages, isFormValid, isInputsValid, handleValidityChange } =
+    useValidation();
+
+  function handleChange(evt) {
+    if (formMessage) resetFormMessage();
+    handleInputChange(evt);
+    handleValidityChange(evt);
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onSignin(loginData);
+  }
+
+  useEffect(() => {
+    isLoggedIn && navigate('/', { replace: true });
+  }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    resetFormMessage();
+  }, [resetFormMessage]);
+
   return (
     <AuthPage
       title='Рады видеть!'
       pageName='login'
       btnText='Войти'
-      children>
-      <label className='form__block form__block_mode_column'>
-        <span className='form__block-name'>E-mail</span>
-        <input
-          className={`form__input form__input_mode_column`}
-          type='email'
-          name='email'
-          placeholder='Введите Email'
-          defaultValue='pochta@yandex.ru'
-          required
-        />
-      </label>
-      <span className='form__input-error form__input-error_mode_column'></span>
-      <label className='form__block form__block_mode_column'>
-        <span className='form__block-name'>Пароль</span>
-        <input
-          className={`form__input form__input_mode_column`}
-          type='password'
-          name='password'
-          placeholder='Введите пароль'
-          required
-        />
-      </label>
-      <span className='form__input-error form__input-error_mode_column'></span>
+      formMessage={formMessage}
+      isLoading={isLoading}
+      isFormValid={isFormValid}
+      onSubmit={handleSubmit}>
+      <FormBlockWithInput
+        mode='column'
+        blockName='E-mail'
+        errorMessage={errorMessages.email}
+        type='email'
+        name='email'
+        placeholder='Введите Email'
+        value={loginData.email}
+        onChange={handleChange}
+        isValid={isInputsValid.email}
+        required
+      />
+      <FormBlockWithInput
+        mode='column'
+        blockName='Пароль'
+        errorMessage={errorMessages.password}
+        type='password'
+        name='password'
+        placeholder='Введите пароль'
+        value={loginData.password}
+        onChange={handleChange}
+        isValid={isInputsValid.password}
+        required
+      />
     </AuthPage>
   );
 }

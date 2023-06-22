@@ -1,0 +1,32 @@
+.infotooltip {
+  min-height: 230px;
+  max-width: 430px;
+  justify-content: center;
+  text-align: center;
+}
+
+.infotooltip__subtitle {
+  margin: 0;
+  font-size: var(--text-s);
+  line-height: var(--text-line-l);
+  font-weight: var(--text-weight-m);
+}
+
+.infotooltip_content_error .infotooltip__subtitle {
+  color: var(--color-text-error);
+}
+
+.infotooltip_content_success .infotooltip__subtitle {
+  color: var(--color-brand-secondary);
+}
+
+@media screen and (max-width: 590px) {
+  .infotooltip {
+    min-height: 194px;
+    max-width: 280px;
+  }
+
+  .infotooltip__subtitle {
+    font-size: var(--text-xxs);
+  }
+}

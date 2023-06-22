@@ -5,7 +5,7 @@ import './Header.css';
 import { ROUTES_WITH_HEADER, ROUTES_WITH_NAVBAR } from '../../utils/constants';
 import { Logo, NavBar, BurgerBtn } from '../';
 
-function Header() {
+function Header({ isLoggedIn }) {
   const { pathname } = useLocation();
   const [isNavBarOpen, setNavBarState] = useState(false);
 
@@ -15,11 +15,6 @@ function Header() {
 
   const hasHeader = ROUTES_WITH_HEADER.includes(pathname);
   const hasNavBar = ROUTES_WITH_NAVBAR.includes(pathname);
-
-  /**
-   * todo - удалить на этапе 3
-   */
-  const isLoggedIn = pathname !== '/';
 
   return (
     hasHeader && (

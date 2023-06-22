@@ -1,6 +1,8 @@
 .movie-card {
+  position: relative;
   width: 364px;
   height: 271px;
+  z-index: 1;
   display: grid;
   grid-template-rows: 1fr min-content 203px;
   grid-template-columns: 1fr 58px;
@@ -13,6 +15,19 @@
   box-shadow: 0px 4px 30px var(--color-black-rgba-08);
 }
 
+.movie-card__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.movie-card__link:hover {
+  background: var(--color-black-rgba-08);
+}
+
 .movie-card__title {
   grid-area: title;
   margin: 14px 0 9px 14px;
@@ -22,6 +37,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: var(--color-text-primary);
 }
 
 .movie-card__duration {
@@ -42,6 +58,7 @@
 }
 
 .movie-card__btn {
+  z-index: 3;
   grid-area: btn;
   place-self: center;
   width: 30px;

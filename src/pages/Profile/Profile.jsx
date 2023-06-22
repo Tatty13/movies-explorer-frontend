@@ -1,62 +1,113 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 
 import './Profile.css';
-import { Form } from '../../components';
+import { CurrentUserContext } from '../../contexts';
+import { Form, FormBlockWithInput } from '../../components';
+import { useInput, useValidation } from '../../hooks';
 
-function Profile({ user }) {
-  const navigate = useNavigate();
+function Profile({
+  onUpdateUser,
+  onSignOut,
+  isLoading,
+  formMessage,
+  resetFormMessage,
+  formMessageType,
+}) {
+  const { name, email } = useContext(CurrentUserContext);
   const [isEditMode, setEditModeState] = useState(false);
+  const [isSubmitForbidden, setIsSubmitForbidden] = useState(true);
 
-  const handleSignout = () => {
-    navigate('/', { replace: true });
+  const {
+    values: userData,
+    setValues: setUserData,
+    handleInputChange,
+  } = useInput({
+    name,
+    email,
+  });
+
+  const { errorMessages, isFormValid, isInputsValid, handleValidityChange } =
+    useValidation();
+
+  const handleChange = (evt) => {
+    if (formMessage) resetFormMessage();
+    handleInputChange(evt);
+    handleValidityChange(evt);
   };
 
   const handleInfoEdit = () => {
     setEditModeState(true);
+    resetFormMessage();
   };
 
-  const handleSubmit = () => {
-    setEditModeState(false);
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    await onUpdateUser(userData);
   };
+
+  useEffect(() => {
+    const isRequestWithError = formMessage && formMessageType === 'error';
+    const isUserDataTheSame =
+      name === userData.name.trim() && email === userData.email.trim();
+    setIsSubmitForbidden(isRequestWithError || isUserDataTheSame);
+  }, [
+    name,
+    email,
+    userData.name,
+    userData.email,
+    formMessage,
+    formMessageType,
+  ]);
+
+  useEffect(() => {
+    setUserData({ name, email });
+    setEditModeState(false);
+  }, [name, email, setUserData]);
+
+  useEffect(() => {
+    resetFormMessage();
+  }, [resetFormMessage]);
 
   return (
     <section className={`container section profile`}>
-      <h1 className='section__title profile__title'>
-        {`Привет, ${user.name}!`}
-      </h1>
+      <h1 className='section__title profile__title'>{`Привет, ${name}!`}</h1>
       <Form
         name='profile'
         onSubmit={handleSubmit}
+        isLoading={isLoading}
+        formMessage={formMessage}
+        formMessageType={formMessageType}
+        isFormValid={isFormValid}
+        isSubmitForbidden={isSubmitForbidden}
         isEditMode={isEditMode}>
-        <label className='form__block form__block_mode_row'>
-          Имя
-          <input
-            className={`form__input form__input_mode_row`}
-            type='text'
-            name='name'
-            placeholder='Введите имя'
-            defaultValue={user.name}
-            minLength='2'
-            maxLength='30'
-            required
-            disabled={!isEditMode}
-          />
-          <span className='form__input-error form__input-error_mode_row'></span>
-        </label>
-        <label className='form__block form__block_mode_row'>
-          E-mail
-          <input
-            className={`form__input form__input_mode_row`}
-            type='email'
-            name='email'
-            placeholder='Введите Email'
-            defaultValue={user.email}
-            required
-            disabled={!isEditMode}
-          />
-          <span className='form__input-error form__input-error_mode_row'></span>
-        </label>
+        <FormBlockWithInput
+          mode='row'
+          blockName='Имя'
+          errorMessage={errorMessages.name}
+          type='text'
+          name='name'
+          placeholder='Введите имя'
+          minLength='2'
+          maxLength='30'
+          value={userData.name}
+          onChange={handleChange}
+          isValid={isInputsValid.name}
+          required
+          disabled={!isEditMode}
+        />
+        <FormBlockWithInput
+          mode='row'
+          blockName='E-mail'
+          errorMessage={errorMessages.email}
+          type='email'
+          name='email'
+          placeholder='Введите Email'
+          value={userData.email}
+          onChange={handleChange}
+          isValid={isInputsValid.email}
+          required
+          disabled={!isEditMode}
+        />
       </Form>
       {!isEditMode && (
         <div className='controls'>
@@ -68,7 +119,7 @@ function Profile({ user }) {
             Редактировать
           </button>
           <button
-            onClick={handleSignout}
+            onClick={onSignOut}
             type='button'
             className='btn controls__btn controls__btn_theme_important hover-effect hover-effect_type_opacity-60
             '>

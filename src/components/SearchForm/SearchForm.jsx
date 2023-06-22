@@ -1,26 +1,32 @@
-import { useState } from 'react';
-
 import './SearchForm.css';
 
-function SearchForm() {
-  const [isFilterActive, setFilterState] = useState(true);
-
-  const toggleFilter = () => setFilterState(!isFilterActive);
-
+function SearchForm({
+  isFilterActive,
+  onFilterClick,
+  onSubmit,
+  isLoading,
+  searchValue,
+  onChange,
+}) {
   return (
     <form
-      className='search-form'
-      name='search'>
+      className='form search-form'
+      name='search'
+      onSubmit={onSubmit}>
       <div className='search'>
         <input
+          name='search'
           type='text'
           placeholder='Фильм'
           className='search__input'
+          value={searchValue}
+          onChange={onChange}
         />
         <button
           type='submit'
           aria-label='Искать'
-          className='btn search__btn hover-effect'>
+          className='btn search__btn hover-effect'
+          disabled={isLoading}>
           <span className='search__icon' />
         </button>
       </div>
@@ -28,9 +34,10 @@ function SearchForm() {
         <button
           type='button'
           aria-label='Фильтровать'
-          onClick={toggleFilter}
+          onClick={onFilterClick}
           className={`btn filter__btn hover-effect hover-effect_type_opacity-60
-          ${!isFilterActive && 'filter__btn_inactive'}`}>
+          ${!isFilterActive && 'filter__btn_inactive'}`}
+          disabled={isLoading}>
           <span className='filter__switch'></span>
         </button>
         <span className='filter__name'>Короткометражки</span>

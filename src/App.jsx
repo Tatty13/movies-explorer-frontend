@@ -189,13 +189,12 @@ function App() {
         setIsLoggedIn(true);
       } catch (err) {
         localStorage.clear();
-        navigate('/', { replace: true });
         handleError(err);
       }
     } else {
       setIsPageLoading(false);
     }
-  }, [navigate, handleError]);
+  }, [handleError]);
 
   useEffect(() => {
     handleTokenCheck();

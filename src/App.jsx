@@ -163,6 +163,8 @@ function App() {
       navigate('/', { replace: true });
     } catch (err) {
       handleError(err);
+    } finally {
+      setIsPageLoading(false);
     }
   }
 

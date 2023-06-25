@@ -3,7 +3,7 @@
  * @returns
  */
 function createFullUrl(path) {
-  return `https://api.nomoreparties.co/${path}`;
+  return `https://api.nomoreparties.co${path}`;
 }
 
 export { createFullUrl };

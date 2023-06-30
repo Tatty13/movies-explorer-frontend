@@ -73,14 +73,3 @@
     bottom: -9px;
   }
 }
-
-@keyframes widthTransform {
-  0% {
-    left: 50%;
-    width: 0;
-  }
-  100% {
-    left: 0;
-    width: 100%;
-  }
-}

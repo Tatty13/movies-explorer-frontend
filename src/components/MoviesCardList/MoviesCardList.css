@@ -2,14 +2,15 @@
   padding-top: 70px;
   padding-bottom: 80px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(364px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(339px, 364px));
   justify-items: center;
+  justify-content: center;
   gap: 30px 24px;
 }
 
 @media screen and (max-width: 920px) {
   .movies__list {
-    grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 339px));
     gap: 36px 30px;
   }
 
@@ -24,7 +25,7 @@
   }
 
   .movies__list {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, 300px);
     gap: 16px;
   }
 }

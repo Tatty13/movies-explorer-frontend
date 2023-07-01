@@ -7,7 +7,12 @@ import {
   SectionWithMovies,
 } from '../../components';
 import { useInput } from '../../hooks';
-import { filterMovies, getDataFromLS, saveDataInLS } from '../../utils/helpers';
+import {
+  filterMovies,
+  getDataFromLS,
+  saveDataInLS,
+  removeDataFromLS,
+} from '../../utils/helpers';
 import { MOVIE_MESSAGES } from '../../utils/constants';
 
 function SavedMovies({ movies, onDelete }) {
@@ -28,10 +33,13 @@ function SavedMovies({ movies, onDelete }) {
 
     const filterState = !isSavedMoviesFilterActive;
     setFilterState(filterState);
-    saveDataInLS({ isSavedMoviesFilterActive: filterState });
 
     const { savedMoviesSearch } = getDataFromLS('savedMoviesSearch');
-    const filtredMovies = filterMovies(movies, savedMoviesSearch, filterState);
+    const filtredMovies = filterMovies(
+      movies,
+      savedMoviesSearch || '',
+      filterState
+    );
     setFiltredMovies(filtredMovies);
 
     setIsLoading(false);
@@ -54,29 +62,14 @@ function SavedMovies({ movies, onDelete }) {
     e.preventDefault();
     handleSearch();
     saveDataInLS({
-      isSavedMoviesFilterActive,
       savedMoviesSearch: searchValue.search,
     });
   }
 
   useEffect(() => {
     setIsLoading(true);
-
-    const { isSavedMoviesFilterActive, savedMoviesSearch } = getDataFromLS(
-      'isSavedMoviesFilterActive',
-      'savedMoviesSearch'
-    );
-
-    if (!savedMoviesSearch) saveDataInLS({ savedMoviesSearch: '' });
-
-    const booleanFilter = isSavedMoviesFilterActive === 'true';
-    const search = savedMoviesSearch || '';
-    setFilterState(booleanFilter);
-    setSearchValue({ search });
-
-    const filtredMovies = filterMovies(movies, search, booleanFilter);
-    setFiltredMovies(filtredMovies);
-
+    setFiltredMovies(movies);
+    removeDataFromLS('savedMoviesSearch');
     setIsLoading(false);
   }, [movies, setSearchValue]);
 

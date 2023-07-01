@@ -26,8 +26,13 @@ function Profile({
     email,
   });
 
-  const { errorMessages, isFormValid, isInputsValid, handleValidityChange } =
-    useValidation();
+  const {
+    errorMessages,
+    isFormValid,
+    isInputsValid,
+    handleValidityChange,
+    resetValidation,
+  } = useValidation();
 
   const handleChange = (evt) => {
     if (formMessage) resetFormMessage();
@@ -48,6 +53,7 @@ function Profile({
   const handleBackBtnClick = () => {
     setEditModeState(false);
     setUserData({ name, email });
+    resetValidation();
   };
 
   useEffect(() => {

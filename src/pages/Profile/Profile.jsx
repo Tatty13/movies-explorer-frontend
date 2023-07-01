@@ -45,6 +45,11 @@ function Profile({
     await onUpdateUser(userData);
   };
 
+  const handleBackBtnClick = () => {
+    setEditModeState(false);
+    setUserData({ name, email });
+  };
+
   useEffect(() => {
     const isRequestWithError = formMessage && formMessageType === 'error';
     const isUserDataTheSame =
@@ -109,24 +114,34 @@ function Profile({
           disabled={!isEditMode}
         />
       </Form>
-      {!isEditMode && (
-        <div className='controls'>
+      <div className='controls'>
+        {isEditMode ? (
           <button
-            onClick={handleInfoEdit}
             type='button'
             className='btn controls__btn controls__btn_theme_normal hover-effect hover-effect_type_opacity-60
-            '>
-            Редактировать
+        '
+            onClick={handleBackBtnClick}>
+            Назад
           </button>
-          <button
-            onClick={onSignOut}
-            type='button'
-            className='btn controls__btn controls__btn_theme_important hover-effect hover-effect_type_opacity-60
+        ) : (
+          <>
+            <button
+              onClick={handleInfoEdit}
+              type='button'
+              className='btn controls__btn controls__btn_theme_normal hover-effect hover-effect_type_opacity-60
             '>
-            Выйти из аккаунта
-          </button>
-        </div>
-      )}
+              Редактировать
+            </button>
+            <button
+              onClick={onSignOut}
+              type='button'
+              className='btn controls__btn controls__btn_theme_important hover-effect hover-effect_type_opacity-60
+            '>
+              Выйти из аккаунта
+            </button>
+          </>
+        )}
+      </div>
     </section>
   );
 }

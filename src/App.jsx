@@ -163,6 +163,8 @@ function App() {
       navigate('/', { replace: true });
     } catch (err) {
       handleError(err);
+    } finally {
+      setIsPageLoading(false);
     }
   }
 
@@ -189,13 +191,12 @@ function App() {
         setIsLoggedIn(true);
       } catch (err) {
         localStorage.clear();
-        navigate('/', { replace: true });
         handleError(err);
       }
     } else {
       setIsPageLoading(false);
     }
-  }, [navigate, handleError]);
+  }, [handleError]);
 
   useEffect(() => {
     handleTokenCheck();

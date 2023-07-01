@@ -1,4 +1,5 @@
 .techs {
+  position: relative;
   background-color: var(--color-bg-tertiary);
 }
 
@@ -46,13 +47,40 @@
   font-size: var(--text-s);
   line-height: var(--text-line-m);
   letter-spacing: -0.04em;
-  background-color: var(--color-bg-blocks);
+  background: var(--color-bg-blocks);
   border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
   transition: var(--transition-duration-main);
 }
 
 .techs__item:hover {
+  background: var(--color-gray-2);
   transform: scale(1.08);
+}
+
+.techs__tooltip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.techs__tooltip-text {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 16px 20px;
+  max-width: 230px;
+  font-size: var(--text-xxxs);
+  background: var(--color-bg-blocks);
+  background: var(--color-bg-tertiary);
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px 2px var(--color-very-dark-gray-3);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  animation: fadeIn 0.8s forwards;
 }
 
 @media screen and (max-width: 920px) {

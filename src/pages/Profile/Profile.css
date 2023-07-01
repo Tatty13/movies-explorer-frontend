@@ -4,7 +4,10 @@
   max-width: 410px;
   min-height: 626px;
   align-items: center;
-  gap: 123px;
+}
+
+.profile__title {
+  margin-bottom: 123px;
 }
 
 .form_place_profile {
@@ -12,6 +15,7 @@
 }
 
 .controls {
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +48,10 @@
     padding-top: 236px;
     padding-bottom: 269px;
     min-height: 950px;
-    gap: 96px;
+  }
+
+  .profile__title {
+    margin-bottom: 96px;
   }
 }
 
@@ -53,7 +60,10 @@
     padding-top: 70px;
     padding-bottom: 40px;
     min-height: 706px;
-    gap: 80px;
+  }
+
+  .profile__title {
+    margin-bottom: 80px;
   }
 
   .controls__btn {

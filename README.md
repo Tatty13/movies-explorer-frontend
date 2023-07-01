@@ -12,7 +12,7 @@ The development is based on the BEM methodology. The page markup is implemented 
 
 ## Links
 
-Pull Request <https://github.com/Tatty13/movies-explorer-frontend/pull/2>
+Backend <https://github.com/Tatty13/movies-explorer-api>
 
 Layout (.fig)
 <https://drive.google.com/file/d/1wva7Zy3v1bojyElel4F6hFb5oWDW1oVi/view?usp=sharing>

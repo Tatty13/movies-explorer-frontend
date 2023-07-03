@@ -74,7 +74,3 @@ In the project directory, you can run:
 </div>
 
 ---
-
-## ToDo
-
-* Add `back` or `cancel` button on `profile` page when user is in data edit mode

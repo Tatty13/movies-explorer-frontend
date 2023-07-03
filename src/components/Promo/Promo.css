@@ -6,12 +6,36 @@
   min-height: 574px;
   padding: 75px var(--app-side-padding-desktop);
   display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  transition: var(--transition-duration-main);
+}
+
+.promo__content {
+  display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  background: right 70px top 75px / 310px 304px
-    url('../../assets/icons/landing-logo.svg') no-repeat;
   transition: var(--transition-duration-main);
+}
+
+.promo__img-container {
+  position: relative;
+  width: 310px;
+  height: 304px;
+  overflow: hidden;
+  transition: var(--transition-duration-main);
+}
+
+.promo__img-container::before {
+  content: '';
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/icons/landing-logo.svg') no-repeat center /
+    contain;
 }
 
 .promo__title {
@@ -55,10 +79,16 @@
 
 @media screen and (max-width: 1068px) {
   .container_place_promo {
-    min-height: 850px;
+    padding-top: 140px;
+    padding-bottom: 78px;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 44px;
+  }
+
+  .promo__content {
     align-items: center;
     text-align: center;
-    background-position: center top 140px;
   }
 
   .promo__title {
@@ -75,10 +105,12 @@
 
 @media screen and (max-width: 712px) {
   .container_place_promo {
-    min-height: 636px;
-    padding: 30px var(--app-side-padding-mobile-xs);
-    background-size: 210px 206px;
-    background-position-y: 70px;
+    padding: 70px var(--app-side-padding-mobile-xs) 30px;
+  }
+
+  .promo__img-container {
+    width: 210px;
+    height: 206px;
   }
 
   .promo__title {

@@ -35,7 +35,8 @@ function Nav({ extraNavClasses, extraListClasses, navItems, isOpen, onClose }) {
               ? handleActiveLink
               : `link nav__link hover-effect hover-effect_type_opacity-60
               ${isBtn ? 'nav__link_style_btn' : 'link_theme_primary'}`
-          }>
+          }
+          onClick={onClose}>
           {title}
         </NavLink>
       </li>
